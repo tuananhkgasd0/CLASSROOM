@@ -1,0 +1,40 @@
+.loginForm {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+  padding: 0 24px;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login{
+  background-image: url(../assets/bg-login.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+.login__title{
+  font-size: 68px;
+  margin-top: 10%;
+  color: #03045E;
+}
+.login__input{
+  margin-bottom: 10px !important;
+  width: 30vw;
+}
+.Login__btn{
+  width: 100px !important;
+  height: 40px !important;
+  align-self: right;
+}
+.form__btn{
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+  margin-top: 2%;
+}
+.mt-5{margin-top: 5%!important}

@@ -2,10 +2,10 @@ import * as React from 'react';
 import {Link} from 'react-router-dom';
 import {TextField, Button} from '@material-ui/core';
 import {Formik,Form, Field,ErrorMessage} from 'formik';
-import './Login.css';
+import './Register.css';
 import * as Yup from 'yup';
 import axios from 'axios';
-import GoogleButton from 'react-google-button';
+
 const Login = ({handleChange}) => {
   const initialValues={
     username:'',
@@ -38,6 +38,7 @@ const Login = ({handleChange}) => {
     <div >
         <div className="loginForm">
             <h1 className="login__title">CLASSROOM</h1>
+            <h1 className="login__title mt-5">SIGNUP</h1>
           <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             {(props) => (
               <Form className="loginForm mt-5 w-20">
@@ -60,14 +61,24 @@ const Login = ({handleChange}) => {
                 className="login__input"
                 helperText={<ErrorMessage name="password"/>}
                 />
+                <Field
+                as={TextField}
+                id="outlined-password-input"
+                label="Confirm Password"
+                type="password"
+                name = "confirmpassword"
+                autoComplete="current-password"
+                className="login__input"
+                helperText={<ErrorMessage name="password"/>}
+                />
                 <div className="form__btn">
-                  <Link to={`/register`}>
+                <Link to={`/login`}>
                   <Button
                     className="Login__btn"
                     variant="outlined"
-                    color="primary"
+                    color="secondary"
                   >
-                  Register
+                  Back
                   </Button> 
                   </Link>
                   <Button
@@ -83,10 +94,6 @@ const Login = ({handleChange}) => {
               </Form>          
             )}
           </Formik>
-          <GoogleButton
-            className="mt-10"
-            onClick={() => { console.log('Google button clicked') }}
-          />
         </div>
     </div>
   );

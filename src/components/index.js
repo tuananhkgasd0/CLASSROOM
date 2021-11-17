@@ -4,6 +4,7 @@ export {default as CreateClass} from './CreateClass/CreateClass';
 export {default as JoinClass} from './JoinClass/JoinClass'; 
 export {default as JoinedClasses} from './JoinedClasses/JoinedClasses';
 export {default as Login} from './Login/Login';
+export {default as Register} from './Register/Register';
 export {default as ClassInfo} from './ClassInfo/ClassInfo';
 export {default as InvitePeople} from './InvitePeople/InvitePeople'; 
 export {default as People} from './People/People';  
