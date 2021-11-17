@@ -1,5 +1,4 @@
-import axiosClient from "./axiosClient";
-
+import axiosClient from "../axiosClient";
 const classroomAPI = {
   getAllClasses: async () => {
     const url = "/classes";

@@ -3,7 +3,7 @@ import {Header, Login,ClassInfo, Classes, JoinedClasses} from './components';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import{Button} from '@material-ui/core';
 import apiClient from "./http-common";
-import classroomAPI from './classroomAPI';
+import classroomAPI from './api/classroomAPI';
 function App() {
  
   const get_id = useRef(null);
