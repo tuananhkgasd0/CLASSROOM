@@ -1,9 +1,11 @@
-import { AppBar, Typography, Toolbar, Avatar, Menu, MenuItem } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
-import React from 'react'
-import { useStyles } from './style';
+import {AppBar, Toolbar, Avatar, Menu, MenuItem} from '@material-ui/core';
+import {Link} from 'react-router-dom';
+import {Add} from '@material-ui/icons';
+import React from 'react';
+import {useStyles} from './style';
 import {useLocalContext} from '../../context/context';
-import {CreateClass, JoinClass} from '..';
+import {CreateClass, JoinClass,ChangeProfile} from '..';
+import logo from '../assets/logo.png'; 
 const Header = () =>{
     const classes = useStyles();
 
@@ -12,7 +14,7 @@ const Header = () =>{
     const handleClick = (event) => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null);
 
-    const {setCreateClassDialog, setJoinClassDialog} = useLocalContext();
+    const {setCreateClassDialog, setJoinClassDialog, setChangeProfileDialog} = useLocalContext();
 
     const handleCreate = () =>{
         handleClose()
@@ -22,14 +24,18 @@ const Header = () =>{
         handleClose()
         setJoinClassDialog(true)
     }
+    const handleChange = () => {
+        handleClose()
+        setChangeProfileDialog(true)
+    }
     return (
         <div className={classes.root}>
             <AppBar className={classes.appBar} position="static">
                 <Toolbar className={classes.toolBar}>
                     <div className={classes.headerWrapper}>
-                        <Typography variant="h6" className={classes.title}>
-                            Classroom
-                        </Typography>
+                        <Link to={`/`} className="header__home">
+                            <img src={logo}/>
+                        </Link>
                     </div>
                     <div className={classes.header_wrapper_right}>
                         <Add className={classes.icon} onClick={handleClick}/>
@@ -39,18 +45,20 @@ const Header = () =>{
                             keepMounted
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
+                            className={classes.menu}
                         >
                             <MenuItem onClick={handleJoin}>Join Class</MenuItem>
                             <MenuItem onClick={handleCreate}>Create Class</MenuItem>   
                         </Menu>
                         <div>
-                            <Avatar/>
+                            <Avatar onClick={handleChange}/>
                         </div>
                     </div>
                 </Toolbar>
             </AppBar>
             <CreateClass/>
             <JoinClass/>
+            <ChangeProfile/>
         </div>
     )
 }

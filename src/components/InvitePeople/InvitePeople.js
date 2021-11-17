@@ -2,54 +2,54 @@ import React from "react";
 import { useLocalContext } from "../../context/context";
 import {Dialog, Slide,Button,TextField} from "@material-ui/core";
 import {Close} from "@material-ui/icons";
-import "./JoinClass.css";
+import "./InvitePeople.css";
 
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
 });
 
-const JoinClass = () => {
-    const {joinClassDialog,setJoinClassDialog} = useLocalContext();
+const InvitePeople = () => {
+    const {invitePeopleDialog,setInvitePeopleDialog} = useLocalContext();
     return(
         <div>
             <Dialog 
             fullScreen 
-            open={joinClassDialog} 
-            onClose={() => setJoinClassDialog(false)}
+            open={invitePeopleDialog} 
+            onClose={() => setInvitePeopleDialog(false)}
             TransitionComponent={Transition}
             >
-                <div className="joinClass">
-                    <div className="joinClass__wrapper">
+                <div className="invite">
+                    <div className="invite__wrapper">
                         <div 
-                            className="joinClass__wrapper2" 
-                            onClick={() => setJoinClassDialog(false)}>
-                            <Close className="joinClass__svg"></Close>
-                            <div className="joinClass__topHead">Join CLass</div>
+                            className="invite__wrapper2" 
+                            onClick={() => setInvitePeopleDialog(false)}>
+                            <Close className="invite__svg"></Close>
+                            <div className="invite__topHead">Invite to Class</div>
                         </div>
                     </div>
-                    <div className="joinClass__form">
+                    <div className="invite__form">
                         <div className="joinClass__formText">
-                            <h1>Class Code</h1>
+                            <h1>Invite to class by Email</h1>
                         </div>
-                        <div className="joinClass__formText">
-                        Ask your teacher for the class code, and enter it here.
+                        <div className="invite__formText">
+                            Ask your teacher or student email, and enter it here.
                         </div>
-                        <div className="joinClass__loginInfo">
+                        <div className="invite__loginInfo">
                             <TextField
                                 id="outlined-basic"
-                                label="Class Code"
+                                label="Email"
                                 variant="outlined"
-                                className="joinClass__input"
+                                className="invite__input"
                             >
                             </TextField>
                         </div>
-                        <div className="joinClass_btnform">
+                        <div className="invite_btnform">
                             <Button
-                                className="joinClass__btn"
+                                className="invite__btn"
                                 variant="contained"
                                 color="primary"
                             >
-                            Join Class
+                                Invite
                             </Button>
                         </div>
                     </div>
@@ -58,4 +58,4 @@ const JoinClass = () => {
         </div>
     );
 };
-export default JoinClass;
+export default InvitePeople;

@@ -1,6 +1,7 @@
 .class__root{
     margin: 0 3%;
 }
+.mt-5{margin-top:3%}
 .class__center{
     display: flex;
     flex-wrap: wrap;
