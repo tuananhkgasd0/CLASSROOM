@@ -10,10 +10,9 @@ const JoinedClasses = (props) => {
           <div className="joined__imgWrapper"/>
           <div className="joined__image"/>
           <Link className="joined__content" to={`/${props.id}`}>
-            <div className="joined__title"><h2>{props.subject}</h2>
-            <h1>{props.id}</h1>
+            <div className="joined__title"><h1>{props.className}</h1>
             </div>
-            <p className="joined__owner" color="primary">{props.teacher}</p>
+            <p className="joined__owner" style={{color: "white"}}>{props.username}</p>
           </Link>
         </div>
         <Avatar className="joined__avatar"

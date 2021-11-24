@@ -4,16 +4,18 @@ import {TextField, Button} from '@material-ui/core';
 import {Formik,Form, Field,ErrorMessage} from 'formik';
 import './Register.css';
 import * as Yup from 'yup';
-import axios from 'axios';
+import userApi from '../../api/userAPI';
 
-const Login = ({handleChange}) => {
+const Register = ({handleChange}) => {
   const initialValues={
     username:'',
+    email:'',
     password:'',
   }
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Required"),
+    email: Yup.string().required("Required"),
     password: Yup.string().required("Required")
   })
 
@@ -22,17 +24,10 @@ const Login = ({handleChange}) => {
     setTimeout(() => {
       props.resetForm()
       props.setSubmitting(true)
-    },2000)
+    },200)
     console.log(props);
-
-    axios({
-      method: 'post',
-      url: 'http://localhost:8080/api/auth/signin',
-      data: {
-        username: values.username,
-        password: values.password
-      }
-    });
+    
+    userApi.signUp(values);
   }
   return (
     <div >
@@ -50,6 +45,15 @@ const Login = ({handleChange}) => {
                 className="login__input"
                 name = "username"
                 helperText={<ErrorMessage name="username"/>}
+                />
+                <Field
+                as={TextField}
+                id="filled-required"
+                label="Email"
+                type="text"
+                className="login__input"
+                name = "email"
+                helperText={<ErrorMessage name="email"/>}
                 />
                 <Field
                 as={TextField}
@@ -98,4 +102,4 @@ const Login = ({handleChange}) => {
     </div>
   );
 }
-export default Login;
+export default Register;

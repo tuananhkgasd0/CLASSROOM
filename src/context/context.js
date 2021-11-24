@@ -11,6 +11,9 @@ export function ContextProvider({children}){
     const [peopleDialog, setPeopleDialog] = useState(false);
     const [invitePeopleDialog, setInvitePeopleDialog] = useState(false);
     const [changeProfileDialog, setChangeProfileDialog] = useState(false);
+    const [formClassExDialog, setFormClassExDialog] = useState(false);
+    const [formExDialog, setFormExDialog] = useState(false);
+    const [formConfirmDeleteDialog, setFormConfirmDeleteDialog] = useState(false);
     const value = {
         createClassDialog,
         setCreateClassDialog,
@@ -21,6 +24,12 @@ export function ContextProvider({children}){
         invitePeopleDialog,
         setInvitePeopleDialog,
         changeProfileDialog,
-        setChangeProfileDialog};
+        setChangeProfileDialog,
+        formClassExDialog, 
+        setFormClassExDialog,
+        formExDialog, 
+        setFormExDialog,
+        formConfirmDeleteDialog, 
+        setFormConfirmDeleteDialog};
     return <AddContext.Provider value = {value}> {children} </AddContext.Provider>;
 }

@@ -1,13 +1,15 @@
-import {AppBar, Toolbar, Avatar, Menu, MenuItem} from '@material-ui/core';
+import {AppBar, Toolbar, Avatar, Button} from '@material-ui/core';
 import {Link} from 'react-router-dom';
-import {Add} from '@material-ui/icons';
 import React from 'react';
-import {useStyles} from './HeaderStyle';
+import {useStyles} from './HeaderClassStyle';
 import {useLocalContext} from '../../context/context';
 import {CreateClass, JoinClass,ChangeProfile} from '..';
 import logo from '../assets/logo.png'; 
-const Header = () =>{
-    const classes = useStyles();
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+
+const HeaderClass = (props) =>{
+    const classes = useStyles();    
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -28,6 +30,11 @@ const Header = () =>{
         handleClose()
         setChangeProfileDialog(true)
     }
+
+    const [alignment, setAlignment] = React.useState('News');
+    const handleButtonChange = (event, newAlignment) => {
+        setAlignment(newAlignment);
+    };
     return (
         <div className={classes.root}>
             <AppBar className={classes.appBar} position="static">
@@ -37,19 +44,21 @@ const Header = () =>{
                             <img src={logo} alt=""/>
                         </Link>
                     </div>
+                    <div 
+                        className={classes.header_wrapper_middle}>
+                        <Link to={`/${props.items.id}`}
+                            className={classes.button} >
+                        <Button
+                        >News</Button>
+                        </Link>
+                        <Link to={`/${props.items.id}/excercises`}
+                            className={classes.button} >
+                        <Button
+                        >Classroom exercises</Button>
+                        </Link>
+
+                    </div>
                     <div className={classes.header_wrapper_right}>
-                        <Add className={classes.icon} onClick={handleClick}/>
-                        <Menu
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                            className={classes.menu}
-                        >
-                            <MenuItem onClick={handleJoin}>Join Class</MenuItem>
-                            <MenuItem onClick={handleCreate}>Create Class</MenuItem>   
-                        </Menu>
                         <div>
                             <Avatar onClick={handleChange}/>
                         </div>
@@ -62,4 +71,4 @@ const Header = () =>{
         </div>
     )
 }
-export default Header;
+export default HeaderClass;

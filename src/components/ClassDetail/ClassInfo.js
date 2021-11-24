@@ -3,6 +3,7 @@ import {useLocalContext} from '../../context/context';
 import React from 'react';
 import {People, InvitePeople} from '..';
 import "./ClassInfo.css";
+import HeaderClass from "../Header/HeaderClass"
 
 const ClassInfo = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -21,6 +22,7 @@ const ClassInfo = (props) => {
   }
   return (
     <div className="main">
+      <HeaderClass items={props.items}/>
       <div className="main__wrapper">
         <div className="main__content">
           <div className="main__wrapper1">
@@ -29,14 +31,14 @@ const ClassInfo = (props) => {
             </div>
             <div className="main__text">
               <h1 className="main__heading main__overflow">
-                {props.items.subject}
+                {props.items.className}
               </h1>
               <div className="main__section main__overflow">
-                {props.items.teacher}
+                {props.items.users[0].username}
               </div>
               <div className="main__wrapper2">
                 <em className="main__code">Class Code :</em>
-                <div className="main__id"> {props.items.idc}</div>
+                <div className="main__id"> {props.items.id}</div>
               </div>
             </div>
           </div>

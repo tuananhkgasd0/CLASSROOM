@@ -3,12 +3,22 @@ import { useLocalContext } from "../../context/context";
 import {Dialog, Slide,Button,TextField, Avatar} from "@material-ui/core";
 import {Close} from "@material-ui/icons";
 import "./ChangeProfile.css";
+import { useNavigate } from "react-router-dom";
+//import { withCookies } from 'react-cookie';
 
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
 });
 
+
 const ChangeProfile = () => {
+    let navigate = useNavigate();
+    //const cookies = new withCookies();
+    const LogoutBtn = () =>{ 
+        localStorage.setItem("token")
+        //cookies.remove('Token');
+        navigate("/");
+    }
     const {changeProfileDialog,setChangeProfileDialog} = useLocalContext();
     return(
         <div>
@@ -64,6 +74,14 @@ const ChangeProfile = () => {
                             </TextField>
                         </div>
                         <div className="profile_btnform">
+                            <Button
+                                className="profile__btn"
+                                variant="outlined"
+                                color="primary"
+                                onClick={LogoutBtn}
+                            >
+                            Logout
+                            </Button>
                             <Button
                                 className="profile__btn"
                                 variant="contained"

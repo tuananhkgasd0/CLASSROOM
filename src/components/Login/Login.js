@@ -4,10 +4,13 @@ import {TextField, Button} from '@material-ui/core';
 import {Formik,Form, Field,ErrorMessage} from 'formik';
 import './Login.css';
 import * as Yup from 'yup';
-import axios from 'axios';
+import userApi from '../../api/userAPI';
 import GoogleButton from 'react-google-button';
-const Login = ({handleChange}) => {
-  const initialValues={
+import { push } from "connected-react-router";
+import * as acitons from "../actions";
+import { useNavigate } from "react-router-dom";
+const Login = () => {
+  const initialValues = {
     username:'',
     password:'',
   }
@@ -16,29 +19,21 @@ const Login = ({handleChange}) => {
     username: Yup.string().required("Required"),
     password: Yup.string().required("Required")
   })
-
-  const onSubmit=(values,props)=>{
+  let navigate = useNavigate();
+  const LoginBtn = () =>{ 
+    localStorage.setItem("token", true)
+    navigate("/classes");
+  }
+  const handleSubmit = (values,props)=>{
     console.log(values);
-    setTimeout(() => {
-      props.resetForm()
-      props.setSubmitting(true)
-    },2000)
-    console.log(props);
-
-    axios({
-      method: 'post',
-      url: 'http://localhost:8080/api/auth/signin',
-      data: {
-        username: values.username,
-        password: values.password
-      }
-    });
+    let data = userApi.signIn(values);
+    console.log(data);
   }
   return (
     <div >
         <div className="loginForm">
             <h1 className="login__title">CLASSROOM</h1>
-          <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+          <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
             {(props) => (
               <Form className="loginForm mt-5 w-20">
                 <Field
@@ -60,6 +55,9 @@ const Login = ({handleChange}) => {
                 className="login__input"
                 helperText={<ErrorMessage name="password"/>}
                 />
+                {/* <div style={{color: "red"}}>
+                  {values.errorMessage}
+                </div> */}
                 <div className="form__btn">
                   <Link to={`/register`}>
                   <Button
@@ -75,9 +73,9 @@ const Login = ({handleChange}) => {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    disabled={props.isSubmitting}
+                    onClick={LoginBtn}
                   >
-                  {props.isSubmitting?"Loading":"Login"}
+                  Login
                   </Button>
                 </div>
               </Form>          
@@ -91,4 +89,15 @@ const Login = ({handleChange}) => {
     </div>
   );
 }
+// const mapStateToProps = state => {
+//   return {
+//       language: state.app.language
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => {
+//   return{
+//     navigate: (path) => dispatch(push(path)),
+//     userLoginSuccess: (userInfor) => dispatch(acitons.userLoginSuccess(userInfor))
+//   }
+// }
 export default Login;
