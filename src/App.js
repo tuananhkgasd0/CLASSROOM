@@ -4,11 +4,12 @@ import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom
 import classroomAPI from "./api/classroomAPI";
 function App() {
   const [classesList, setClassesList] = useState([]);
-
+  const token = JSON.parse(localStorage.getItem("user") || "[]");
   useEffect(() => {
     const fetchClassesList = async () => {
       try {
-        const response = await classroomAPI.getAllClasses();
+        console.log(token);
+        const response = await classroomAPI.getAllClasses(token.id);
         setClassesList(response);
       } catch (error) {
         console.log("Fail to fetch", error);
@@ -16,6 +17,7 @@ function App() {
     };
     fetchClassesList();
   }, []);
+
   return (
     <Router>
         <Routes>
@@ -30,10 +32,8 @@ function App() {
           )}
           <Route path="/" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/> 
-          <Route path='/classes' element={<Classes items={classesList}/>}/>  
-          <Route path='/classes' element={() => {
-            return localStorage.getItem("token") ? <Classes items={classesList}/> : <Navigate to="/"/>
-          }}/>
+          <Route path='/classes' element={<Classes items={classesList} />}/>  
+          <Route></Route>
         </Routes>
     </Router>
   );

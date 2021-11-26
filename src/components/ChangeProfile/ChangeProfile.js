@@ -13,10 +13,8 @@ const Transition = React.forwardRef(function Transition(props,ref){
 
 const ChangeProfile = () => {
     let navigate = useNavigate();
-    //const cookies = new withCookies();
     const LogoutBtn = () =>{ 
-        localStorage.setItem("token")
-        //cookies.remove('Token');
+        localStorage.removeItem("user");
         navigate("/");
     }
     const {changeProfileDialog,setChangeProfileDialog} = useLocalContext();

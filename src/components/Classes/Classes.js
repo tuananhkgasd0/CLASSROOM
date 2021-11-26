@@ -1,15 +1,31 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import {JoinedClasses} from ".."
 import './style.css';
 import Header from '../Header/Header';
-const Classes = (props) => {
+import classroomAPI from "../../api/classroomAPI";
 
+const Classes = (props) => {
+    const [classesList, setClassesList] = useState([]);
+    const token = JSON.parse(localStorage.getItem("user") || "[]");
+    useEffect(() => {
+      const fetchClassesList = async () => {
+        try {
+          console.log("token.id");
+          console.log(token.id);
+          const response = await classroomAPI.getAllClasses(token.id);
+          setClassesList(response);
+        } catch (error) {
+          console.log("Fail to fetch", error);
+        }
+      };
+      fetchClassesList();
+    }, []);
     return(
         <div>
             <Header/>
             <div className="class__root mt-5">
             <div className="class__center">
-                {props.items.map(classroom => 
+                {classesList.map(classroom => 
                 <JoinedClasses 
                     id = {classroom.id}
                     className = {classroom.className}

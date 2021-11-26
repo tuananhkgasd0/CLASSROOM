@@ -1,44 +1,39 @@
 import React from "react";
 import { useLocalContext } from "../../context/context";
-import {Dialog, Slide,Button,TextField, Box,FormControl,InputLabel,Select,MenuItem} from "@material-ui/core";
-import {Close} from "@material-ui/icons";
+import {Dialog, Slide,Button} from "@material-ui/core";
 import "./FormEx.css";
 import assignmentAPI from "../../api/assignmentAPI";
-import {Formik,Form, Field,FormikControl} from 'formik';
+import "./FormConfirmDelete.css";
 
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
 });
 
-const FormConfirmDelete = (req, res) => {
-    const handleDelete = (req, res) => {
-        console.log(req);
-        console.log(res);
-        assignmentAPI.deleteAssignment(req, res);
-    }
-
+const FormConfirmDelete = (props) => {
     const {formConfirmDeleteDialog,setFormConfirmDeleteDialog} = useLocalContext();
+    const handleDelete = () => {
+        console.log(props.class_id);
+        console.log(props.assign_id);
+        assignmentAPI.deleteAssignment(props.class_id, props.assign_id);
+        setFormConfirmDeleteDialog(false)
+        window.location.reload(false);
+    }
     return(
         <div>
-            <Dialog 
-            fullScreen 
-            open={formConfirmDeleteDialog} 
+            <Dialog
             onClose={() => setFormConfirmDeleteDialog(false)}
-            TransitionComponent={Transition}
+            aria-labelledby="customized-dialog-title"
+            open={formConfirmDeleteDialog}
+            className="form__dialog"
+            maxWidth={"lg"}
             >
-            <div className="invite__wrapper2" 
-                onClick={() => setFormConfirmDeleteDialog(false)}>
-                <Close className="invite__svg"></Close>
-                <div className="invite__topHead">Are you sure delete</div>
-                <div className="ml-auto">
-                    <Button
-                        onClick={handleDelete}
-                    >
-                        Yes
-                    </Button>
+                <div className="form">
+                    <h1>Are you sure deleted this assign</h1>
+                    <div className="form__btn">
+                        <Button onClick={() => setFormConfirmDeleteDialog(false)}>No</Button>
+                        <Button onClick={handleDelete} className="ml-auto">Yes</Button>
+                    </div>
                 </div>
-            </div>
-                       
             </Dialog>
         </div>
     );

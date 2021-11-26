@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {TextField, Button} from '@material-ui/core';
 import {Formik,Form, Field,ErrorMessage} from 'formik';
@@ -6,29 +6,26 @@ import './Login.css';
 import * as Yup from 'yup';
 import userApi from '../../api/userAPI';
 import GoogleButton from 'react-google-button';
-import { push } from "connected-react-router";
-import * as acitons from "../actions";
 import { useNavigate } from "react-router-dom";
-const Login = () => {
+const Login = ({isAuth}) => {
   const initialValues = {
     username:'',
     password:'',
   }
-
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Required"),
     password: Yup.string().required("Required")
   })
   let navigate = useNavigate();
-  const LoginBtn = () =>{ 
-    localStorage.setItem("token", true)
-    navigate("/classes");
+
+  const handleSubmit = async (values)=>{
+    const response = await userApi.signIn(values);
+    if(response.accessToken != undefined){
+      localStorage.setItem("user",JSON.stringify(response));
+      navigate("/classes");
+    }
   }
-  const handleSubmit = (values,props)=>{
-    console.log(values);
-    let data = userApi.signIn(values);
-    console.log(data);
-  }
+  
   return (
     <div >
         <div className="loginForm">
@@ -73,7 +70,6 @@ const Login = () => {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    onClick={LoginBtn}
                   >
                   Login
                   </Button>

@@ -88,7 +88,9 @@ const ClassExercise = (props) => {
                             <MenuItem onClick={handleClose2}>Change</MenuItem>
                           </Menu>
                           </div>
-                          <FormConfirmDelete items = {props.items.id, assign.id}/>
+                          <FormConfirmDelete 
+                            assign_id ={assign.id} 
+                            class_id = {props.items.id}/>
                           </li>
                         )}
                       </ul>

@@ -2,7 +2,7 @@ import './CreateClass.css';
 import { useLocalContext } from "../../context/context";
 import {Dialog} from "@material-ui/core"
 import React from 'react';
-import Form from './Form'
+import FormCreateClass from './FormCreateClass'
 const CreateClass = () => {
     const {createClassDialog,setCreateClassDialog} = useLocalContext();
     return (
@@ -13,7 +13,7 @@ const CreateClass = () => {
             className="form__dialog"
             maxWidth={"lg"}
         >
-            <Form/>
+        <FormCreateClass/>
         </Dialog>
     );
 };

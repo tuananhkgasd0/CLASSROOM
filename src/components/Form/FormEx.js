@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocalContext } from "../../context/context";
-import {Dialog, Slide,Button,TextField, Box,FormControl,InputLabel,Select,MenuItem} from "@material-ui/core";
+import {Dialog, Slide,Button,TextField, Box,InputLabel,Select} from "@material-ui/core";
 import {Close} from "@material-ui/icons";
 import "./FormEx.css";
 import assignmentAPI from '../../api/assignmentAPI';
-import {Formik,Form, Field,FormikControl} from 'formik';
+import {Formik,Form, Field} from 'formik';
 
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
@@ -23,7 +23,8 @@ const FormEx = (props) => {
         console.log(values);
         assignmentAPI.createAssignment(values);
         console.log(data);
-      }
+        window.location.reload(false);
+    }
 
     const [point, setPoint] = React.useState('');
 

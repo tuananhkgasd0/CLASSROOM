@@ -1,14 +1,20 @@
 import axiosClient from "../axiosClient"
+import authHeader from "./auth-header";
 
 const classroomAPI = {
-  getAllClasses: (params) => {
-    const url = "/classes";
-    return axiosClient.get(url, { params });
+  getAllClasses: (param) => {
+    const url = "/classes/user/" + param;
+    return axiosClient.get(
+      url, 
+      {
+      headers: authHeader()
+      }
+    )
   },
   createClass: (data) => {
-    const url = "/classes";
+    const url = "/classes/user";
     console.log({ data });
-    return axiosClient.post(url, data);
-  },
+    return axiosClient.post(url, data,)
+  }
 };
 export default classroomAPI;
