@@ -34,7 +34,7 @@ const ClassInfo = (props) => {
                 {props.items.className}
               </h1>
               <div className="main__section main__overflow">
-                {props.items.users[0].username}
+                {props.items.teacherName}
               </div>
               <div className="main__wrapper2">
                 <em className="main__code">Class Code :</em>

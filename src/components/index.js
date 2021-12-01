@@ -7,6 +7,7 @@ export {default as Login} from './Login/Login';
 export {default as Register} from './Register/Register';
 export {default as ClassInfo} from './ClassDetail/ClassInfo';
 export {default as ClassExercise} from './ClassDetail/ClassExercise';
+export {default as Grade} from './ClassDetail/Grade';
 export {default as InvitePeople} from './Form/InvitePeople'; 
 export {default as People} from './Form/People'; 
 export {default as FormEx} from './Form/FormEx'; 

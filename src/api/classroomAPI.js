@@ -15,6 +15,15 @@ const classroomAPI = {
     const url = "/classes/user";
     console.log({ data });
     return axiosClient.post(url, data,)
+  },
+  getStudent: (param) => {
+    const url = "/classes/" + param + "/students";
+    return axiosClient.get(
+      url, 
+      {
+      headers: authHeader()
+      }
+    ) 
   }
 };
 export default classroomAPI;

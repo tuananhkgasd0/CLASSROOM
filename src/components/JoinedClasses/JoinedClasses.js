@@ -12,7 +12,7 @@ const JoinedClasses = (props) => {
           <Link className="joined__content" to={`/${props.id}`}>
             <div className="joined__title"><h1>{props.className}</h1>
             </div>
-            <p className="joined__owner" style={{color: "white"}}>{props.username}</p>
+            <p className="joined__owner" style={{color: "white"}}>{props.teacherName}</p>
           </Link>
         </div>
         <Avatar className="joined__avatar"

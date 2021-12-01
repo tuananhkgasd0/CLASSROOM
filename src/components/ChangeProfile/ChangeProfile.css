@@ -63,16 +63,16 @@
     margin-bottom: 0.5rem;
 }
 .profile__input{
-    width: 60%;
-    margin-top: 5%!important;
+    width: 100%;
+    margin-top: 4%!important;
 }
 .profile__loginInfo {
     align-items: center;
-    display: flex;
+    flex-direction:column;
     flex-flow: row wrap;
-    width: 100%;
+    width: 35%;
     justify-content: space-between;
-    margin-top: 3%;
+    margin-top: 0%;
 }
 .profile__loginName {
     letter-spacing: 0.01785714em;
@@ -104,4 +104,9 @@
 }
 .profile__classLeft {
     display: flex;
+}
+.profile__avatar{
+    width: 5vw!important; 
+    height: 5vw!important;
+    margin-top: 2%!important;
 }

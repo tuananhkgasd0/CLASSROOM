@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {TextField, Button} from '@material-ui/core';
 import {Formik,Form, Field,ErrorMessage} from 'formik';
@@ -20,7 +20,7 @@ const Login = ({isAuth}) => {
 
   const handleSubmit = async (values)=>{
     const response = await userApi.signIn(values);
-    if(response.accessToken != undefined){
+    if(response.accessToken !== undefined){
       localStorage.setItem("user",JSON.stringify(response));
       navigate("/classes");
     }

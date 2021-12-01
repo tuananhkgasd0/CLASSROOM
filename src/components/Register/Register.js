@@ -9,6 +9,7 @@ import userApi from '../../api/userAPI';
 const Register = ({handleChange}) => {
   const initialValues={
     username:'',
+    name:'',
     email:'',
     password:'',
   }
@@ -16,6 +17,7 @@ const Register = ({handleChange}) => {
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Required"),
     email: Yup.string().required("Required"),
+    name: Yup.string().required("Required"),
     password: Yup.string().required("Required")
   })
 
@@ -49,6 +51,15 @@ const Register = ({handleChange}) => {
                 <Field
                 as={TextField}
                 id="filled-required"
+                label="Name"
+                type="text"
+                className="login__input"
+                name = "name"
+                helperText={<ErrorMessage name="name"/>}
+                />
+                <Field
+                as={TextField}
+                id="filled-required"
                 label="Email"
                 type="text"
                 className="login__input"
@@ -76,7 +87,7 @@ const Register = ({handleChange}) => {
                 helperText={<ErrorMessage name="password"/>}
                 />
                 <div className="form__btn">
-                <Link to={`/login`}>
+                <Link to={`/`}>
                   <Button
                     className="Login__btn"
                     variant="outlined"
@@ -92,7 +103,7 @@ const Register = ({handleChange}) => {
                     type="submit"
                     disabled={props.isSubmitting}
                   >
-                  {props.isSubmitting?"Loading":"Login"}
+                  {props.isSubmitting?"Loading":"Register"}
                   </Button>
                 </div>
               </Form>          

@@ -32,11 +32,6 @@ const FormEx = (props) => {
         setPoint(event.target.value);
     };
 
-    const dropdownOptions = [
-        {key: '10', value: '10'},
-        {key: '100', value: '100'},
-    ]
-
     const {formExDialog,setFormExDialog} = useLocalContext();
     return(
         <div>

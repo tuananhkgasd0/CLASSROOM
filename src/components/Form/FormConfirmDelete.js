@@ -1,13 +1,9 @@
 import React from "react";
 import { useLocalContext } from "../../context/context";
-import {Dialog, Slide,Button} from "@material-ui/core";
+import {Dialog,Button} from "@material-ui/core";
 import "./FormEx.css";
 import assignmentAPI from "../../api/assignmentAPI";
 import "./FormConfirmDelete.css";
-
-const Transition = React.forwardRef(function Transition(props,ref){
-    return <Slide direction="up" ref={ref}{...props}/>
-});
 
 const FormConfirmDelete = (props) => {
     const {formConfirmDeleteDialog,setFormConfirmDeleteDialog} = useLocalContext();

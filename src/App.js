@@ -1,6 +1,6 @@
 import React, {useState, useEffect}  from "react";
-import { Login,ClassInfo,Register, Classes,ClassExercise} from "./components";
-import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
+import { Login,ClassInfo,Register, Classes,ClassExercise,Grade} from "./components";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import classroomAPI from "./api/classroomAPI";
 function App() {
   const [classesList, setClassesList] = useState([]);
@@ -8,9 +8,9 @@ function App() {
   useEffect(() => {
     const fetchClassesList = async () => {
       try {
-        console.log(token);
         const response = await classroomAPI.getAllClasses(token.id);
-        setClassesList(response);
+        setClassesList(response.data);
+        console.log(response);
       } catch (error) {
         console.log("Fail to fetch", error);
       }
@@ -21,19 +21,24 @@ function App() {
   return (
     <Router>
         <Routes>
-          {classesList.map(classroom => 
+          {classesList.map((classroom) => 
             <Route path={"/" + classroom.id} element={<div><ClassInfo items={classroom}/></div>}></Route>
           )}
-          {classesList.map(classroom => 
+          {classesList.map((classroom) => 
             <Route path={"/" + classroom.id + "/excercises"} element={ 
               <div><ClassExercise items={classroom}/></div>
-            }>
-            </Route>
+            }></Route>
+          )}
+          {classesList.map((classroom) => 
+            <Route path={"/" + classroom.id + "/grade"} element={ 
+              <div>
+                  <Grade items={classroom}/>
+              </div>
+            }></Route>
           )}
           <Route path="/" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/> 
           <Route path='/classes' element={<Classes items={classesList} />}/>  
-          <Route></Route>
         </Routes>
     </Router>
   );

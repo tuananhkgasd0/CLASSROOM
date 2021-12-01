@@ -1,0 +1,32 @@
+.label__form{
+  width: 80vw;
+  display: flex!important;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+.value__form{
+  width: 80vw;
+  display: flex!important;
+  margin-top: 0;
+  margin-left: 2%;
+}
+.label__item{
+  width: 20%;
+  border: 1px solid black;
+  padding: 20px;
+  display: flex!important;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+.info__item{
+  width: 20%;
+  border: 1px solid black;
+  display: flex!important;
+  align-items: center;
+  padding: 20px;
+  font-size: 14px;
+}
+.point__input{
+  width: 15%
+}
