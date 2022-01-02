@@ -26,6 +26,10 @@
   margin-bottom: 10px !important;
   width: 30vw;
 }
+.checkbox{
+  width: 30vw;
+  align-items: left !important;
+}
 .Login__btn{
   width: 100px !important;
   height: 40px !important;

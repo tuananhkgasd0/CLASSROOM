@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import {TextField, Button} from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import {TextField, Button, Checkbox} from '@material-ui/core';
 import {Formik,Form, Field,ErrorMessage} from 'formik';
 import './Register.css';
 import * as Yup from 'yup';
@@ -12,13 +13,19 @@ const Register = ({handleChange}) => {
     name:'',
     email:'',
     password:'',
+    roles: false
+  }
+  
+  const [checked, setChecked] = React.useState(true);
+  handleChange = event => {
+    this.setState({checked: event.target.checked})
   }
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Required"),
     email: Yup.string().required("Required"),
     name: Yup.string().required("Required"),
-    password: Yup.string().required("Required")
+    password: Yup.string().required("Required"),
   })
 
   const onSubmit=(values,props)=>{
@@ -29,7 +36,7 @@ const Register = ({handleChange}) => {
     },200)
     console.log(props);
     
-    userApi.signUp(values);
+    userApi.signUp(values,checked);
   }
   return (
     <div >
@@ -86,6 +93,8 @@ const Register = ({handleChange}) => {
                 className="login__input"
                 helperText={<ErrorMessage name="password"/>}
                 />
+                <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} name="roles" />}
+                label="Teacher"/>
                 <div className="form__btn">
                 <Link to={`/`}>
                   <Button
@@ -103,7 +112,7 @@ const Register = ({handleChange}) => {
                     type="submit"
                     disabled={props.isSubmitting}
                   >
-                  {props.isSubmitting?"Loading":"Register"}
+                  {props.isSubmitting?"Done":"Register"}
                   </Button>
                 </div>
               </Form>          

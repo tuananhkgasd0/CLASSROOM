@@ -4,10 +4,12 @@ import {Formik,Form,Field} from 'formik';
 import classroomAPI from '../../api/classroomAPI';
 
 const FormCreateClass = () => {
+    const token = JSON.parse(localStorage.getItem("user") || "[]");
     const initialValues={
         className: '',
         numberOfStudent: '',
-        banner: ''
+        banner: '',
+        teacherId: token.id
     }
 
     const onSubmit=(values,data)=>{

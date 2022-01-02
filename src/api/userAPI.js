@@ -1,17 +1,31 @@
 import axiosClient from "../axiosClient"
 //import authHeader from "./auth-header";
 const userAPI = {
-    signUp: (param) =>{
+    signUp: (param,checked) =>{
         const url = "/auth/signup";
-        return axiosClient.post(
-            url,
-            {
-                username: param.username,
-                password: param.password,
-                fullName: param.name,
-                email: param.email,
-            }
-        );
+        if(checked === true){
+            return axiosClient.post(
+                url,
+                {
+                    username: param.username,
+                    password: param.password,
+                    fullName: param.name,
+                    email: param.email,
+                    roles: ["teacher"]
+                }
+            );
+        }
+        else{
+            return axiosClient.post(
+                url,
+                {
+                    username: param.username,
+                    password: param.password,
+                    fullName: param.name,
+                    email: param.email,
+                }
+            );
+        }
     },
     signIn: (param) => {
         const url = "/auth/signin";

@@ -3,7 +3,7 @@ import authHeader from "./auth-header";
 
 const classroomAPI = {
   getAllClasses: (param) => {
-    const url = "/classes/user/" + param;
+    const url = "/classes/user/"+param;
     return axiosClient.get(
       url, 
       {
@@ -12,9 +12,14 @@ const classroomAPI = {
     )
   },
   createClass: (data) => {
-    const url = "/classes/user";
-    console.log({ data });
-    return axiosClient.post(url, data,)
+    const url = "/classes";
+    return axiosClient.post(url, {
+      className: data.className,
+      numberOfStudent: data.numberOfStudent,
+      banner: data.banner,
+    },{
+      headers: authHeader()
+      })
   },
   getStudent: (param) => {
     const url = "/classes/" + param + "/students";
