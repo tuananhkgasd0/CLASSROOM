@@ -3,7 +3,7 @@ import axiosClient from "../axiosClient"
 const userAPI = {
     signUp: (param,checked) =>{
         const url = "/auth/signup";
-        if(checked === true){
+        if(checked === "teacher"){
             return axiosClient.post(
                 url,
                 {

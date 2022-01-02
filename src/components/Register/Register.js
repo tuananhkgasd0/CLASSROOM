@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {TextField, Button, Checkbox} from '@material-ui/core';
+import {TextField, Button, Radio, RadioGroup } from '@material-ui/core';
 import {Formik,Form, Field,ErrorMessage} from 'formik';
 import './Register.css';
 import * as Yup from 'yup';
@@ -13,31 +13,39 @@ const Register = ({handleChange}) => {
     name:'',
     email:'',
     password:'',
-    roles: false
-  }
+    confirmpassword: '',
+  };
   
-  const [checked, setChecked] = React.useState(true);
-  handleChange = event => {
-    this.setState({checked: event.target.checked})
-  }
+  const [value, setValue] = React.useState('student');
+  const handleValue = (event) => {
+    setValue(event.target.value);
+  };
+
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Required"),
     email: Yup.string().required("Required"),
     name: Yup.string().required("Required"),
     password: Yup.string().required("Required"),
-  })
+  });
 
   const onSubmit=(values,props)=>{
-    console.log(values);
-    setTimeout(() => {
-      props.resetForm()
-      props.setSubmitting(true)
-    },200)
-    console.log(props);
-    
-    userApi.signUp(values,checked);
-  }
+    if(values.confirmpassword === values.password){
+      console.log(values);
+      setTimeout(() => {
+        props.resetForm()
+        props.setSubmitting(true)
+      },200)
+      console.log(props);
+      userApi.signUp(values,value);
+      setErrorMessage("Sign Up Success");
+    }
+    else{
+      console.log("confirm password is incorrect");
+      setErrorMessage("Confirm password is incorrect")
+    }
+  };
   return (
     <div >
         <div className="loginForm">
@@ -48,7 +56,6 @@ const Register = ({handleChange}) => {
               <Form className="loginForm mt-5 w-20">
                 <Field
                 as={TextField}
-                id="filled-required"
                 label="Username"
                 type="text"
                 className="login__input"
@@ -57,7 +64,6 @@ const Register = ({handleChange}) => {
                 />
                 <Field
                 as={TextField}
-                id="filled-required"
                 label="Name"
                 type="text"
                 className="login__input"
@@ -66,7 +72,6 @@ const Register = ({handleChange}) => {
                 />
                 <Field
                 as={TextField}
-                id="filled-required"
                 label="Email"
                 type="text"
                 className="login__input"
@@ -75,7 +80,6 @@ const Register = ({handleChange}) => {
                 />
                 <Field
                 as={TextField}
-                id="outlined-password-input"
                 label="Password"
                 type="password"
                 name = "password"
@@ -85,7 +89,6 @@ const Register = ({handleChange}) => {
                 />
                 <Field
                 as={TextField}
-                id="outlined-password-input"
                 label="Confirm Password"
                 type="password"
                 name = "confirmpassword"
@@ -93,8 +96,11 @@ const Register = ({handleChange}) => {
                 className="login__input"
                 helperText={<ErrorMessage name="password"/>}
                 />
-                <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange} name="roles" />}
-                label="Teacher"/>
+                <RadioGroup  className="checkbox d-flex" value={value} onChange={handleValue}>
+                  <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />
+                  <FormControlLabel value="student" control={<Radio />} label="Student" />  
+                </RadioGroup >
+                {errorMessage && <div> {errorMessage} </div>}
                 <div className="form__btn">
                 <Link to={`/`}>
                   <Button
@@ -112,7 +118,8 @@ const Register = ({handleChange}) => {
                     type="submit"
                     disabled={props.isSubmitting}
                   >
-                  {props.isSubmitting?"Done":"Register"}
+                  {/* {props.isSubmitting?"Done":"Register"} */}
+                  Register
                   </Button>
                 </div>
               </Form>          

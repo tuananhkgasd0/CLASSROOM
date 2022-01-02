@@ -16,7 +16,7 @@ const FormCreateClass = () => {
         console.log(values);
         classroomAPI.createClass(values);
         console.log(data);
-        //window.location.reload(false);
+        window.location.reload(false);
     }
     return (
         <Formik className="invite" initialValues={initialValues} onSubmit={onSubmit}>
