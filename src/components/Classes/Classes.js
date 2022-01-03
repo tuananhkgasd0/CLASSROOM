@@ -3,8 +3,7 @@ import {JoinedClasses} from ".."
 import './style.css';
 import Header from '../Header/Header';
 import classroomAPI from "../../api/classroomAPI";
-
-const Classes = (props) => {
+const Classes = () => {
   const [classesList, setClassesList] = useState([]);
   const token = JSON.parse(localStorage.getItem("user") || "[]");
   useEffect(() => {
@@ -19,17 +18,17 @@ const Classes = (props) => {
     fetchClassesList();
   }, []);
   return(
-      <div>
+      <div className="bg-gray">
           <Header/>
           <div className="class__root mt-5">
-          <div className="class__center">
-              {classesList.map((classroom) => 
-              <JoinedClasses 
-                  id = {classroom.id}
-                  className = {classroom.className}
-                  teacherName = {classroom.teacherName}
-              />)}
-          </div>
+            <div className="class__center">
+                {classesList.map((classroom) => 
+                <JoinedClasses 
+                    id = {classroom.id}
+                    className = {classroom.className}
+                    teacherName = {classroom.teacherName}
+                />)}
+            </div>
           </div>
       </div>
   );

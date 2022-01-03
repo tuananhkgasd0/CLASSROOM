@@ -39,7 +39,7 @@ const Register = ({handleChange}) => {
       },200)
       console.log(props);
       userApi.signUp(values,value);
-      setErrorMessage("Sign Up Success");
+      setErrorMessage("Sign up successfully");
     }
     else{
       console.log("confirm password is incorrect");
@@ -47,10 +47,9 @@ const Register = ({handleChange}) => {
     }
   };
   return (
-    <div >
+    <div className="login">
         <div className="loginForm">
-            <h1 className="login__title">CLASSROOM</h1>
-            <h1 className="login__title mt-5">SIGNUP</h1>
+            <h1 className="login__title">REGISTER</h1>
           <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             {(props) => (
               <Form className="loginForm mt-5 w-20">

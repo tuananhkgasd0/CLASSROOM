@@ -22,13 +22,43 @@ const classroomAPI = {
       })
   },
   getStudent: (param) => {
-    const url = "/classes/" + param + "/students";
+    const url = "/student/?c_id=" + param;
     return axiosClient.get(
       url, 
       {
       headers: authHeader()
       }
     ) 
+  },
+  getTeacher: (param) => {
+    const url = "/teacher/?c_id=" + param;
+    return axiosClient.get(
+      url, 
+      {
+      headers: authHeader()
+      }
+    ) 
+  },
+  addUser: (param) => {
+    const url = "/addUser";
+    return axiosClient.post(
+      url,
+      {
+        classID: param.c_id,
+        userID: param.u_id
+      },
+      {
+      headers: authHeader()
+      }
+    )
+  },
+  inviteUser: (param) => {
+    const url = "/addUser/join/?classid="+param.c_id + "&username=" + param.username;
+    return axiosClient.post(
+      url,{
+      headers: authHeader()
+      }
+    )
   }
 };
 export default classroomAPI;

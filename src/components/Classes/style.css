@@ -1,6 +1,8 @@
 .class__root{
     margin: 0 3%;
 }
+.bg-gray{background-color: #ffe0b2;
+height: 100vh;} 
 .mt-5{margin-top:3%}
 .class__center{
     display: flex;

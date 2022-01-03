@@ -3,13 +3,24 @@ import { useLocalContext } from "../../context/context";
 import {Dialog, Slide,Button,TextField} from "@material-ui/core";
 import {Close} from "@material-ui/icons";
 import "./JoinClass.css";
-
+import {Formik,Form, Field,ErrorMessage} from 'formik';
+import classroomAPI from '../../api/classroomAPI';
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
 });
 
 const JoinClass = () => {
     const {joinClassDialog,setJoinClassDialog} = useLocalContext();
+    const user = JSON.parse(localStorage.getItem("user") || "[]");
+    const initialValues={
+        c_id:'',
+        u_id:user.id,
+    }
+    const onSubmit=(values)=>{
+        classroomAPI.addUser(values);
+        console.log(values);
+        window.location.reload(false);
+    }
     return(
         <div>
             <Dialog 
@@ -34,24 +45,33 @@ const JoinClass = () => {
                         <div className="joinClass__formText">
                         Ask your teacher for the class code, and enter it here.
                         </div>
-                        <div className="joinClass__loginInfo">
-                            <TextField
-                                id="outlined-basic"
-                                label="Class Code"
-                                variant="outlined"
-                                className="joinClass__input"
-                            >
-                            </TextField>
-                        </div>
-                        <div className="joinClass_btnform">
-                            <Button
-                                className="joinClass__btn"
-                                variant="contained"
-                                color="primary"
-                            >
-                            Join Class
-                            </Button>
-                        </div>
+                        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                        {(data) => (
+                            <Form>
+                                <div className="joinClass__loginInfo">
+                                    <Field
+                                        as={TextField}
+                                        id="outlined-basic"
+                                        label="Class Code"
+                                        variant="outlined"
+                                        name="c_id"
+                                        className="joinClass__input"
+                                    >
+                                    </Field>
+                                </div> 
+                                <div className="joinClass_btnform">
+                                    <Button
+                                        className="joinClass__btn"
+                                        variant="contained"
+                                        color="primary"
+                                        type="submit"
+                                    >
+                                    Join Class
+                                    </Button>
+                                </div>
+                            </Form>
+                        )}
+                        </Formik>
                     </div>
                 </div>
             </Dialog>

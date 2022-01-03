@@ -3,13 +3,24 @@ import { useLocalContext } from "../../context/context";
 import {Dialog, Slide,Button,TextField} from "@material-ui/core";
 import {Close} from "@material-ui/icons";
 import "./InvitePeople.css";
+import {Formik,Form, Field,ErrorMessage} from 'formik';
+import classroomAPI from '../../api/classroomAPI';
 
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
 });
 
-const InvitePeople = () => {
+const InvitePeople = (props) => {
+    const initialValues={
+        c_id: props.c_id,
+        u_id: '',
+    }
     const {invitePeopleDialog,setInvitePeopleDialog} = useLocalContext();
+    const onSubmit=(values)=>{
+        classroomAPI.inviteUser(values);
+        console.log(values);
+        window.location.reload(false);
+    }
     return(
         <div>
             <Dialog 
@@ -34,24 +45,33 @@ const InvitePeople = () => {
                         <div className="invite__formText">
                             Ask your teacher or student email, and enter it here.
                         </div>
-                        <div className="invite__loginInfo">
-                            <TextField
-                                id="outlined-basic"
-                                label="Email"
-                                variant="outlined"
-                                className="invite__input"
-                            >
-                            </TextField>
-                        </div>
-                        <div className="invite_btnform">
-                            <Button
-                                className="invite__btn"
-                                variant="contained"
-                                color="primary"
-                            >
-                                Invite
-                            </Button>
-                        </div>
+                        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                        {(data) => (
+                            <Form>
+                            <div className="invite__loginInfo">
+                                <Field
+                                    as={TextField}
+                                    id="outlined-basic"
+                                    label="Email"
+                                    variant="outlined"
+                                    className="invite__input"
+                                    name="username"
+                                >
+                                </Field>
+                            </div>
+                            <div className="invite_btnform">
+                                <Button
+                                    className="invite__btn"
+                                    variant="contained"
+                                    color="primary"
+                                    type="submit"
+                                >
+                                    Invite
+                                </Button>
+                            </div>
+                            </Form>
+                        )}
+                        </Formik>
                     </div>
                 </div>
             </Dialog>

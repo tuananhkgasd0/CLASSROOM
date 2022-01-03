@@ -27,7 +27,7 @@ const Login = ({isAuth}) => {
   }
   
   return (
-    <div >
+    <div class="login">
         <div className="loginForm">
             <h1 className="login__title">CLASSROOM</h1>
           <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>

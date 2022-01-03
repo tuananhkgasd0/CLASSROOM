@@ -14,7 +14,7 @@ const ClassExercise = (props) => {
   const [anchorEl2, setAnchorEl2] = React.useState(null);
 
   const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClickButon = (event) => setAnchorEl2(event.currentTarget);
+  const handleClickButton = (event) => setAnchorEl2(event.currentTarget);
 
   const handleClose = () => setAnchorEl(null);
   const handleClose2 = () => setAnchorEl2(null);
@@ -41,7 +41,9 @@ const ClassExercise = (props) => {
     const fetchAssignList = async () => {
       try {
         const response = await assignmentAPI.getAssignment(props.items.id);
-        setAssignList(response.data);
+        if(response){
+          setAssignList(response.data);
+        };
       } catch (error) {
         console.log("Fail to fetch", error);
       }
@@ -49,21 +51,26 @@ const ClassExercise = (props) => {
     fetchAssignList();
   }, []);
 
+  const [disable, setDisable] = React.useState(false);
+  const user = JSON.parse(localStorage.getItem("user") || "[]");
+  if(user.roles[0] === "ROLE_TEACHER"){
+    setDisable(true)
+  }
   return (
     <div className="main">
       <HeaderClass items={props.items}/>
       <div className="main__wrapper">
         <div className="main__announce">
           <div className="main__status">
-            <Button onClick={handleClick}>+ Create</Button>
+            <Button disabled={disable} onClick={() => handleClick}>+ Create</Button>
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
-                <MenuItem onClick={handleFormEx}>Exercise</MenuItem>
-                <MenuItem onClick={handleFormClassEx}>Exam Exercise</MenuItem>   
+                <MenuItem onClick={() => handleFormEx}>Exercise</MenuItem>
+                <MenuItem onClick={() => handleFormClassEx}>Exam Exercise</MenuItem>   
             </Menu>
           </div>
           <div className="main__announcements">
@@ -75,7 +82,7 @@ const ClassExercise = (props) => {
                         {assignList.map((assign) => 
                           <li className="assign__form"> <Assignment/><span>{assign.assignmentTitle}</span>
                           <div className="form_btn_add">
-                          <Add aria-controls="fade-menu" aria-haspopup="true" onClick={handleClickButon}></Add>
+                          <Add aria-controls="fade-menu" aria-haspopup="true" onClick={() => handleClickButton}></Add>
                           <Menu
                             id="fade-menu"
                             anchorEl={anchorEl2}
@@ -84,8 +91,8 @@ const ClassExercise = (props) => {
                             onClose={handleClose2}
                             TransitionComponent={Fade}
                           >
-                            <MenuItem onClick={handleFormDelete}>Delete</MenuItem>
-                            <MenuItem onClick={handleClose2}>Change</MenuItem>
+                            <MenuItem onClick={() => handleFormDelete}>Delete</MenuItem>
+                            <MenuItem onClick={() => handleClose2}>Change</MenuItem>
                           </Menu>
                           </div>
                           <FormConfirmDelete 

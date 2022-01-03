@@ -79,8 +79,8 @@ const ClassInfo = (props) => {
           </div>
         </div>
       </div>
-      <People/>
-      <InvitePeople/>
+      <People c_id={props.items.id}/>
+      <InvitePeople c_id={props.items.id}/>
     </div>
   );
 };

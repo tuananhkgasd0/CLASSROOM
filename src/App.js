@@ -9,8 +9,9 @@ function App() {
     const fetchClassesList = async () => {
       try {
         const response = await classroomAPI.getAllClasses(token.id);
-        setClassesList(response.data);
-        console.log(response);
+        if(response){
+          setClassesList(response.data);
+        };
       } catch (error) {
         console.log("Fail to fetch", error);
       }
@@ -20,26 +21,26 @@ function App() {
 
   return (
     <Router>
-        <Routes>
-          {classesList.map((classroom) => 
-            <Route path={"/" + classroom.id} element={<div><ClassInfo items={classroom}/></div>}></Route>
-          )}
-          {classesList.map((classroom) => 
-            <Route path={"/" + classroom.id + "/excercises"} element={ 
-              <div><ClassExercise items={classroom}/></div>
-            }></Route>
-          )}
-          {classesList.map((classroom) => 
-            <Route path={"/" + classroom.id + "/grade"} element={ 
-              <div>
-                  <Grade items={classroom}/>
-              </div>
-            }></Route>
-          )}
-          <Route path="/" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/> 
-          <Route path='/classes' element={<Classes items={classesList} />}/>  
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/> 
+        <Route path='/classes' element={<Classes items={() => classesList} />}/>  
+        {classesList.map((classroom) => 
+          <Route path={"/" + classroom.id} element={<div><ClassInfo items={classroom}/></div>}></Route>
+        )}
+        {classesList.map((classroom) => 
+          <Route path={"/" + classroom.id + "/excercises"} element={ 
+            <div><ClassExercise items={classroom}/></div>
+          }></Route>
+        )}
+        {classesList.map((classroom) => 
+          <Route path={"/" + classroom.id + "/grade"} element={ 
+            <div>
+                <Grade items={classroom}/>
+            </div>
+          }></Route>
+        )}
+      </Routes>
     </Router>
   );
 }

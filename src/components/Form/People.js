@@ -1,14 +1,39 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import { useLocalContext } from "../../context/context";
 import {Dialog, Slide,Avatar} from "@material-ui/core";
+import classroomAPI from "../../api/classroomAPI";
 import {Close} from "@material-ui/icons";
 import "./People.css";
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
 });
 
-const People = () => {
+const People = (props) => {
     const {peopleDialog,setPeopleDialog} = useLocalContext();
+    const [studentList, setStudentList] = useState([]);
+    const [teacherList, setTeacherList] = useState([]);
+    useEffect(() => {
+        const fetchTeacherList = async () => {
+          try {
+            const response = await classroomAPI.getTeacher(props.c_id);
+            setTeacherList(response.data);
+          } catch (error) {
+            console.log("Fail to fetch", error);
+          }
+        };
+        fetchTeacherList();
+    }, []);  
+    useEffect(() => {
+        const fetchStudentList = async () => {
+          try {
+            const response = await classroomAPI.getStudent(props.c_id);
+            setStudentList(response.data);
+          } catch (error) {
+            console.log("Fail to fetch", error);
+          }
+        };
+        fetchStudentList();
+    }, []);  
     return(
         <div>
             <Dialog 
@@ -34,9 +59,9 @@ const People = () => {
                             <hr/>
                             <div className="people__list">
                                 <ul>   
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
+                                    {teacherList.map((teacher) => 
+                                        <li> <Avatar/><span>{teacher.username}</span></li>
+                                    )}
                                 </ul>
                             </div>
                         </div>
@@ -46,16 +71,10 @@ const People = () => {
                             </div>
                             <hr/>
                             <div className="people__list">
-                                <ul>   
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
-                                    <li> <Avatar/><span>Nguyễn Văn X</span></li>
+                                    <ul>   
+                                    {studentList.map((student) => 
+                                        <li> <Avatar/><span>{student.username}</span></li>
+                                    )}
                                 </ul>
                             </div>
                         </div>

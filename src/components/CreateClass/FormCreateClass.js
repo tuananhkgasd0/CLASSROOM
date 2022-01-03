@@ -13,9 +13,7 @@ const FormCreateClass = () => {
     }
 
     const onSubmit=(values,data)=>{
-        console.log(values);
         classroomAPI.createClass(values);
-        console.log(data);
         window.location.reload(false);
     }
     return (

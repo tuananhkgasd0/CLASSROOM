@@ -5,7 +5,7 @@ import {Close} from "@material-ui/icons";
 import "./ChangeProfile.css";
 import { useNavigate } from "react-router-dom";
 import userAPI from "../../api/userAPI";
-import {Formik,Form, Field,ErrorMessage} from 'formik';
+import {Formik,Form, Field} from 'formik';
 
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
@@ -20,7 +20,7 @@ const ChangeProfile = () => {
         DOB:'',
         email:'',
         password:'',
-      }
+    }
     const [userInfo, setUserInfo] = useState(initialValues);
     const user = JSON.parse(localStorage.getItem("user") || "[]");
     let navigate = useNavigate();
@@ -39,7 +39,7 @@ const ChangeProfile = () => {
           }
         };
         fetchUserInfo();
-    }, []);
+    }, [user.id]);
     const onSubmit=(values)=>{
         userAPI.changeInfo(user.id, values);
     }
@@ -61,7 +61,7 @@ const ChangeProfile = () => {
                         </div>
                     </div>
                     <Avatar className="profile__avatar"/>
-                    <Formik className="profile__form" initialValues={initialValues} onSubmit={onSubmit}>
+                    <Formik className="profile__form" initialValues={initialValues} onSubmit={() => onSubmit}>
                     {(formik) => {
                         const {
                         values,
