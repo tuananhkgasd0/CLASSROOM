@@ -22,11 +22,6 @@ const HeaderClass = (props) =>{
         handleClose()
         setChangeProfileDialog(true)
     }
-
-    //const [alignment, setAlignment] = React.useState('News');
-    // const handleButtonChange = (event, newAlignment) => {
-    //     setAlignment(newAlignment);
-    // };
     return (
         <div className={classes.root}>
             <AppBar className={classes.appBar} position="static">

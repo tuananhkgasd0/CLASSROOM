@@ -9,7 +9,7 @@ function App() {
     const fetchClassesList = async () => {
       try {
         const response = await classroomAPI.getAllClasses(token.id);
-        if(response){
+        if(response.data){
           setClassesList(response.data);
         };
       } catch (error) {
@@ -17,14 +17,17 @@ function App() {
       }
     };
     fetchClassesList();
-  }, []);
-
+  }, [token.id]);
+  
+  // const response = classroomAPI.getAllClasses(token.id);
+  // setClassesList(response.data);
+  // console.log(response.data);
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/> 
-        <Route path='/classes' element={<Classes items={() => classesList} />}/>  
+        <Route path='/classes' element={<Classes c_list = {classesList}/>}/>  
         {classesList.map((classroom) => 
           <Route path={"/" + classroom.id} element={<div><ClassInfo items={classroom}/></div>}></Route>
         )}

@@ -26,12 +26,6 @@ const FormEx = (props) => {
         window.location.reload(false);
     }
 
-    const [point, setPoint] = React.useState('');
-
-    const handleChange = (event) => {
-        setPoint(event.target.value);
-    };
-
     const {formExDialog,setFormExDialog} = useLocalContext();
     return(
         <div>

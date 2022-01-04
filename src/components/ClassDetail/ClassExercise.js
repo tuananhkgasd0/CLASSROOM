@@ -49,12 +49,12 @@ const ClassExercise = (props) => {
       }
     };
     fetchAssignList();
-  }, []);
+  }, [props.items.id]);
 
-  const [disable, setDisable] = React.useState(false);
+  var disable = false;
   const user = JSON.parse(localStorage.getItem("user") || "[]");
   if(user.roles[0] === "ROLE_TEACHER"){
-    setDisable(true)
+    disable = true;
   }
   return (
     <div className="main">
@@ -62,15 +62,15 @@ const ClassExercise = (props) => {
       <div className="main__wrapper">
         <div className="main__announce">
           <div className="main__status">
-            <Button disabled={disable} onClick={() => handleClick}>+ Create</Button>
+            <Button disabled={disable} onClick={handleClick}>+ Create</Button>
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
-                <MenuItem onClick={() => handleFormEx}>Exercise</MenuItem>
-                <MenuItem onClick={() => handleFormClassEx}>Exam Exercise</MenuItem>   
+                <MenuItem onClick={handleFormEx}>Exercise</MenuItem>
+                <MenuItem onClick={handleFormClassEx}>Exam Exercise</MenuItem>   
             </Menu>
           </div>
           <div className="main__announcements">
@@ -80,9 +80,9 @@ const ClassExercise = (props) => {
                   <div className="assign__list">
                       <ul>   
                         {assignList.map((assign) => 
-                          <li className="assign__form"> <Assignment/><span>{assign.assignmentTitle}</span>
+                          <li className="assign__form"><Assignment/><span>&nbsp;{assign.assignmentTitle}</span>
                           <div className="form_btn_add">
-                          <Add aria-controls="fade-menu" aria-haspopup="true" onClick={() => handleClickButton}></Add>
+                          <Add aria-controls="fade-menu" aria-haspopup="true" onClick={handleClickButton}></Add>
                           <Menu
                             id="fade-menu"
                             anchorEl={anchorEl2}
@@ -91,8 +91,8 @@ const ClassExercise = (props) => {
                             onClose={handleClose2}
                             TransitionComponent={Fade}
                           >
-                            <MenuItem onClick={() => handleFormDelete}>Delete</MenuItem>
-                            <MenuItem onClick={() => handleClose2}>Change</MenuItem>
+                            <MenuItem onClick={handleFormDelete}>Delete</MenuItem>
+                            <MenuItem onClick={handleClose2}>Change</MenuItem>
                           </Menu>
                           </div>
                           <FormConfirmDelete 
