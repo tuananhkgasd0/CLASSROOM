@@ -1,90 +1,106 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import {TextField, Button} from '@material-ui/core';
-import {Formik,Form, Field,ErrorMessage} from 'formik';
-import './Login.css';
-import * as Yup from 'yup';
-import userApi from '../../api/userAPI';
-import GoogleButton from 'react-google-button';
+import React from "react";
+import { Link } from "react-router-dom";
+import { TextField, Button } from "@material-ui/core";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import "./Login.css";
+import * as Yup from "yup";
+import userApi from "../../api/userAPI";
+import { GoogleLogin } from "react-google-login";
 import { useNavigate } from "react-router-dom";
-const Login = ({isAuth}) => {
+const Login = ({ isAuth }) => {
   const initialValues = {
-    username:'',
-    password:'',
-  }
+    username: "",
+    password: "",
+  };
   const validationSchema = Yup.object().shape({
     username: Yup.string().required("Required"),
-    password: Yup.string().required("Required")
-  })
+    password: Yup.string().required("Required"),
+  });
   let navigate = useNavigate();
 
-  const handleSubmit = async (values)=>{
+  const handleSubmit = async (values) => {
     const response = await userApi.signIn(values);
-    if(response.accessToken !== undefined){
-      localStorage.setItem("user",JSON.stringify(response));
+    if (response.accessToken !== undefined) {
+      localStorage.setItem("user", JSON.stringify(response));
       navigate("/classes");
     }
-  }
-  
+  };
+
+  const onGoogleLoginSuccess = (googleAuth) => {
+    console.log("Google login success", googleAuth);
+  };
+
+  const onGoogleLoginFailure = (error) => {
+    console.log("Google login failed");
+    console.log(error);
+  };
+
   return (
     <div class="login">
-        <div className="loginForm">
-            <h1 className="login__title">CLASSROOM</h1>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
-            {(props) => (
-              <Form className="loginForm mt-5 w-20">
-                <Field
+      <div className="loginForm">
+        <h1 className="login__title">CLASSROOM</h1>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          {(props) => (
+            <Form className="loginForm mt-5 w-20">
+              <Field
                 as={TextField}
                 id="filled-required"
                 label="Username"
                 type="text"
                 className="login__input"
-                name = "username"
-                helperText={<ErrorMessage name="username"/>}
-                />
-                <Field
+                name="username"
+                helperText={<ErrorMessage name="username" />}
+              />
+              <Field
                 as={TextField}
                 id="outlined-password-input"
                 label="Password"
                 type="password"
-                name = "password"
+                name="password"
                 autoComplete="current-password"
                 className="login__input"
-                helperText={<ErrorMessage name="password"/>}
-                />
-                {/* <div style={{color: "red"}}>
+                helperText={<ErrorMessage name="password" />}
+              />
+              {/* <div style={{color: "red"}}>
                   {values.errorMessage}
                 </div> */}
-                <div className="form__btn">
-                  <Link to={`/register`}>
+              <div className="form__btn">
+                <Link to={`/register`}>
                   <Button
                     className="Login__btn"
                     variant="outlined"
                     color="primary"
                   >
-                  Register
-                  </Button> 
-                  </Link>
-                  <Button
-                    className="Login__btn"
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                  >
-                  Login
+                    Register
                   </Button>
-                </div>
-              </Form>          
-            )}
-          </Formik>
-          <GoogleButton
-            className="mt-10"
-            onClick={() => { console.log('Google button clicked') }}
-          />
-        </div>
+                </Link>
+                <Button
+                  className="Login__btn"
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                >
+                  Login
+                </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+          buttonText="Login with Google"
+          onSuccess={onGoogleLoginSuccess}
+          onFailure={onGoogleLoginFailure}
+          cookiePolicy={"single_host_origin"}
+        />
+      </div>
     </div>
   );
-}
+};
 // const mapStateToProps = state => {
 //   return {
 //       language: state.app.language
