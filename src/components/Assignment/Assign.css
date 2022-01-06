@@ -1,0 +1,32 @@
+.assign_form{
+    display: flex;
+}
+.assign_detail{
+    margin-top: 1rem;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    width: 50vw;
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:#807373;
+    font-weight: normal!important;
+}
+.assign_submit{
+    margin-top: 1rem;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    width: 20vw;
+    background-color: #fff;
+    border: 0.0625rem solid #dadce0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+.d-flex{display: flex !important;}
+.title_assign{align-items: center;}

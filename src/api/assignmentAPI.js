@@ -1,10 +1,36 @@
-import axiosClient from "../axiosClient"
+import axiosClient from "../axiosClient";
+import authHeader from "./auth-header";
 const assignmentAPI = {
     getAssignment: (params) =>{
+        const url = "/assignments/" + params.a_id + "?c_id=" + params.c_id;
+        return (
+            axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+            )
+        )
+    },
+    getAllAssignment: () =>{
+        const url = "/assignments/all";
+        return (
+            axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+            )
+        )
+    },
+    getAssignmentInClass: (params) =>{
         const url = "/assignments?c_id=" + params;
         return (
             axiosClient.get(
             url,{params},
+            {
+            headers: authHeader()
+            }
             )
         )
     },
@@ -20,6 +46,9 @@ const assignmentAPI = {
                 dueDate: param.dueDate,
                 classId: param.classId
             },
+            {
+            headers: authHeader()
+            }
             )
         )
     },
@@ -29,6 +58,9 @@ const assignmentAPI = {
             axiosClient.delete(
             url,
             {param},
+            {
+            headers: authHeader()
+            }
             )
         )
     }

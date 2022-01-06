@@ -23,7 +23,9 @@ const Login = ({ isAuth }) => {
     if (response.accessToken !== undefined) {
       localStorage.setItem("user", JSON.stringify(response));
       navigate("/classes");
+      window.location.reload(false);
     }
+<<<<<<< HEAD
   };
 
   const onGoogleLoginSuccess = (googleAuth) => {
@@ -35,6 +37,9 @@ const Login = ({ isAuth }) => {
     console.log(error);
   };
 
+=======
+  }
+>>>>>>> 370061cd9fdc3980babc0d46c156fa27c27b9694
   return (
     <div class="login">
       <div className="loginForm">
