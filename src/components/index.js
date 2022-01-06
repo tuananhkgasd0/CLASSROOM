@@ -14,3 +14,4 @@ export {default as FormEx} from './Form/FormEx';
 export {default as FormClassEx} from './Form/FormClassEx';  
 export {default as FormConfirmDelete} from './Form/FormConfirmDelete';  
 export {default as ChangeProfile} from './ChangeProfile/ChangeProfile'; 
+export {default as Assign} from './Assignment/Assign'; 

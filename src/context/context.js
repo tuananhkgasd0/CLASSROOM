@@ -14,6 +14,7 @@ export function ContextProvider({children}){
     const [formClassExDialog, setFormClassExDialog] = useState(false);
     const [formExDialog, setFormExDialog] = useState(false);
     const [formConfirmDeleteDialog, setFormConfirmDeleteDialog] = useState(false);
+    const [assignDialog, setAssignDialog] = useState(false);
     const value = {
         createClassDialog,
         setCreateClassDialog,
@@ -30,6 +31,8 @@ export function ContextProvider({children}){
         formExDialog, 
         setFormExDialog,
         formConfirmDeleteDialog, 
-        setFormConfirmDeleteDialog};
+        setFormConfirmDeleteDialog,
+        assignDialog,
+        setAssignDialog};
     return <AddContext.Provider value = {value}> {children} </AddContext.Provider>;
 }

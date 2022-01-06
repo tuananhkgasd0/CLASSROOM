@@ -178,7 +178,12 @@
   margin-top: 2% !important;
 }
 .assign__form{
-  display: flex
+  display: flex;
+  align-items: center;
+  text-decoration: none!important;
+  color:#5f6368 !important;
+  height: 6vh;
+  font-size: 1.3vw;
 }
 .assign__list{
   width: 100%
@@ -198,4 +203,7 @@
 }
 .form_btn_add MenuItem{
   float: right !important;;
+}
+.assign_btn:hover{
+  background-color: #ffe0b2
 }

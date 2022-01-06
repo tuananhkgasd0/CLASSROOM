@@ -60,7 +60,7 @@ const People = (props) => {
                             <div className="people__list">
                                 <ul>   
                                     {teacherList.map((teacher) => 
-                                        <li> <Avatar/><span>{teacher.username}</span></li>
+                                        <li> <Avatar/><span>{teacher.fullName}</span></li>
                                     )}
                                 </ul>
                             </div>
@@ -73,7 +73,7 @@ const People = (props) => {
                             <div className="people__list">
                                     <ul>   
                                     {studentList.map((student) => 
-                                        <li> <Avatar/><span>{student.username}</span></li>
+                                        <li> <Avatar/><span>{student.fullName}</span></li>
                                     )}
                                 </ul>
                             </div>

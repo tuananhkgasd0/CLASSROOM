@@ -23,9 +23,9 @@ const Login = ({isAuth}) => {
     if(response.accessToken !== undefined){
       localStorage.setItem("user",JSON.stringify(response));
       navigate("/classes");
+      window.location.reload(false);
     }
   }
-  
   return (
     <div class="login">
         <div className="loginForm">

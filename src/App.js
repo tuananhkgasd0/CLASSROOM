@@ -1,16 +1,20 @@
 import React, {useState, useEffect}  from "react";
-import { Login,ClassInfo,Register, Classes,ClassExercise,Grade} from "./components";
+import { Login,ClassInfo,Register, Classes,ClassExercise,Grade, Assign} from "./components";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import classroomAPI from "./api/classroomAPI";
+import assignmentAPI from "./api/assignmentAPI";
 function App() {
   const [classesList, setClassesList] = useState([]);
+  const [assignList, setAssignList] = useState([]);
   const token = JSON.parse(localStorage.getItem("user") || "[]");
   useEffect(() => {
     const fetchClassesList = async () => {
       try {
-        const response = await classroomAPI.getAllClasses(token.id);
-        if(response.data){
-          setClassesList(response.data);
+        const classResponse = await classroomAPI.getAllClasses(token.id);
+        const assignResponse = await assignmentAPI.getAllAssignment();
+        if(classResponse.data && assignResponse){
+          setClassesList(classResponse.data);
+          setAssignList(assignResponse.data);
         };
       } catch (error) {
         console.log("Fail to fetch", error);
@@ -18,10 +22,6 @@ function App() {
     };
     fetchClassesList();
   }, [token.id]);
-  
-  // const response = classroomAPI.getAllClasses(token.id);
-  // setClassesList(response.data);
-  // console.log(response.data);
   return (
     <Router>
       <Routes>
@@ -41,6 +41,11 @@ function App() {
             <div>
                 <Grade items={classroom}/>
             </div>
+          }></Route>
+        )}
+        {assignList.map((assign) => 
+          <Route path={"/assign/" + assign.id} element={ 
+            <div><Assign items={assign}/></div>
           }></Route>
         )}
       </Routes>

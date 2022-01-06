@@ -2,14 +2,16 @@ import {Button, Menu, MenuItem} from "@material-ui/core";
 import {Assignment} from "@material-ui/icons"
 import {useLocalContext} from '../../context/context';
 import React, {useState, useEffect}  from 'react';
-import {FormEx, FormClassEx, FormConfirmDelete} from '..';
+import {FormEx, FormClassEx, FormConfirmDelete, Assign} from '..';
 import "./ClassExercise.css";
-import HeaderClass from "../Header/HeaderClass"
+import HeaderClass from "../Header/HeaderClass";
 import assignmentAPI from "../../api/assignmentAPI";
 import {Add} from '@material-ui/icons';
 import Fade from '@material-ui/core/Fade';
-
+import {Link} from 'react-router-dom';
 const ClassExercise = (props) => {
+  var disable = false;
+  const user = JSON.parse(localStorage.getItem("user") || "[]");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
 
@@ -22,25 +24,25 @@ const ClassExercise = (props) => {
   const {setFormExDialog, setFormClassExDialog, setFormConfirmDeleteDialog} = useLocalContext();
 
   const handleFormEx= () => {
-    handleClose()
-    setFormExDialog(true)
-  } 
+    handleClose();
+    setFormExDialog(true);
+  };
   const handleFormClassEx = () =>{
-    handleClose()
-    setFormClassExDialog(true)
-  }
+    handleClose();
+    setFormClassExDialog(true);
+  };
 
   const handleFormDelete = () =>{
-    handleClose()
-    setFormConfirmDeleteDialog(true)
-  }
+    handleClose();
+    setFormConfirmDeleteDialog(true);
+  };
 
   const [assignList, setAssignList] = useState([]);
 
   useEffect(() => {
     const fetchAssignList = async () => {
       try {
-        const response = await assignmentAPI.getAssignment(props.items.id);
+        const response = await assignmentAPI.getAssignmentInClass(props.items.id);
         if(response){
           setAssignList(response.data);
         };
@@ -49,14 +51,13 @@ const ClassExercise = (props) => {
       }
     };
     fetchAssignList();
+    if(user.roles[0] === "ROLE_TEACHER"){
+      disable = true;
+    };
   }, [props.items.id]);
-
-  var disable = false;
-  const user = JSON.parse(localStorage.getItem("user") || "[]");
-  if(user.roles[0] === "ROLE_TEACHER"){
-    disable = true;
-  }
+  console.log(user.roles[0]);
   return (
+    <div>
     <div className="main">
       <HeaderClass items={props.items}/>
       <div className="main__wrapper">
@@ -78,9 +79,9 @@ const ClassExercise = (props) => {
                   <h1>Assignments</h1>
                   <hr className="mt-2"/>
                   <div className="assign__list">
-                      <ul>   
-                        {assignList.map((assign) => 
-                          <li className="assign__form"><Assignment/><span>&nbsp;{assign.assignmentTitle}</span>
+                      {assignList.map((assign) => 
+                      <div key={assign.id}>
+                        <div className="assign__form assign_btn"><Link to={"/assign/" + assign.id} className="assign__form"><Assignment/><span>&nbsp;{assign.assignmentTitle}</span></Link>
                           <div className="form_btn_add">
                           <Add aria-controls="fade-menu" aria-haspopup="true" onClick={handleClickButton}></Add>
                           <Menu
@@ -98,9 +99,10 @@ const ClassExercise = (props) => {
                           <FormConfirmDelete 
                             assign_id ={assign.id} 
                             class_id = {props.items.id}/>
-                          </li>
-                        )}
-                      </ul>
+                        </div>
+                        <hr/>
+                        </div>
+                      )}
                   </div>
             </div>
           </div>
@@ -108,6 +110,12 @@ const ClassExercise = (props) => {
         <FormEx items={props.items}/>
         <FormClassEx items={props.items}/>
       </div>
+    </div>
+    {/* <Routes>
+    {assignList.map((assign) =>
+      <Route path={"/"+props.items.id+"/excercises/"+assign.id} element={<Login/>}/>
+    )}
+    </Routes> */}
     </div>
   );
 };
