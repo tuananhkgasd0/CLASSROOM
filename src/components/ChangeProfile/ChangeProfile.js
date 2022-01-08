@@ -14,12 +14,14 @@ const Transition = React.forwardRef(function Transition(props,ref){
 
 const ChangeProfile = () => {
     const {changeProfileDialog,setChangeProfileDialog} = useLocalContext();
+    const [errorMessage, setErrorMessage] = React.useState("");
     const initialValues={
         username:'',
         fullName:'',
         DOB:'',
         email:'',
         password:'',
+        studentID:''
     }
     const [userInfo, setUserInfo] = useState(initialValues);
     const user = JSON.parse(localStorage.getItem("user") || "[]");
@@ -33,6 +35,7 @@ const ChangeProfile = () => {
         const fetchUserInfo = async () => {
           try {
             const response = await userAPI.getInfo(user.id);
+            console.log(userInfo);
             setUserInfo(response.data);
           } catch (error) {
             console.log("Fail to fetch", error);
@@ -41,7 +44,9 @@ const ChangeProfile = () => {
         fetchUserInfo();
     }, [user.id]);
     const onSubmit=(values)=>{
+        console.log(values);
         userAPI.changeInfo(user.id, values);
+        setErrorMessage("Change profile successfully");
     }
     return(
         <div>
@@ -61,7 +66,7 @@ const ChangeProfile = () => {
                         </div>
                     </div>
                     <Avatar className="profile__avatar"/>
-                    <Formik className="profile__form" initialValues={initialValues} onSubmit={() => onSubmit}>
+                    <Formik className="profile__form" initialValues={userInfo} onSubmit={onSubmit}>
                     {(formik) => {
                         const {
                         values,
@@ -77,7 +82,6 @@ const ChangeProfile = () => {
                                 label="Email"
                                 variant="outlined"
                                 className="profile__input"
-                                value= {userInfo.email}
                                 onChange={handleChange}
                             >
                             </Field>
@@ -88,22 +92,30 @@ const ChangeProfile = () => {
                                 name="fullName"
                                 variant="outlined"
                                 className="profile__input"
-                                value={userInfo.fullName}
                                 onChange={handleChange}
                             >
                             </Field>
                             <Field
                                 as={TextField}
                                 id="outlined-basic"
-                                label="Date of birth"
+                                label="Date of birth (dd/mm/yyyy)"
                                 name="DOB"
                                 variant="outlined"
                                 className="profile__input"
-                                value={userInfo.DOB}
                                 onChange={handleChange}
                             >
                             </Field>
                             <Field
+                                as={TextField}
+                                id="outlined-basic"
+                                name="studentID"
+                                label="Student ID"
+                                variant="outlined"
+                                className="profile__input"
+                                disabled={!(user.roles[0]==="ROLE_STUDENT")}
+                            >
+                            </Field>
+                            {/* <Field
                                 as={TextField}
                                 id="outlined-basic"
                                 name="password"
@@ -122,7 +134,9 @@ const ChangeProfile = () => {
                                 className="profile__input"
                                 type="password"
                             >
-                            </Field>
+                            </Field> */}
+                            
+                            {errorMessage && <div className="mt-2"> {errorMessage} </div>}
                             </div>
                             <div className="profile_btnform">
                                 <Button

@@ -56,12 +56,30 @@ const assignmentAPI = {
         const url = "/assignments?c_id=" + req + "&id=" + res;
         return (
             axiosClient.delete(
-            url,
-            {param},
+                url,
+                {param},
+                {
+                headers: authHeader()
+                }
+            )
+        )
+    },
+    updateAssigment: (idl, params) => {
+        const url = "/assignments?id=" + idl;
+        return (
+            axiosClient.put(url,{
+                id: idl,
+                assignmentTitle: params.assignmentTitle,
+                instruction: params.instruction,
+                point: params.point,
+                dueDate: params.dueDate,
+                createdAt: params.createdAt,
+                updateAt: params.updateAt,
+                classId: params.classId,
+            },
             {
             headers: authHeader()
-            }
-            )
+            })
         )
     }
 }

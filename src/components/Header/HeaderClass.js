@@ -41,7 +41,7 @@ const HeaderClass = (props) =>{
                         <Link to={`/${props.items.id}/excercises`}
                             className={classes.button} >
                         <Button
-                        >Classroom exercises</Button>
+                        >Exercises</Button>
                         </Link>
                         <Link to={`/${props.items.id}/grade`}
                             className={classes.button} >

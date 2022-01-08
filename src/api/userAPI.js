@@ -1,5 +1,5 @@
 import axiosClient from "../axiosClient"
-//import authHeader from "./auth-header";
+import authHeader from "./auth-header";
 const userAPI = {
     signUp: (param,checked) =>{
         const url = "/auth/signup";
@@ -42,6 +42,26 @@ const userAPI = {
         }
         ));
     },
+    signInGoogle: (params) => {
+        const url = "/auth/signin/google-sign-in?id_token=" + params;
+        return(axiosClient.post(
+            url).then(function(response) {
+                return response.data;
+            }).catch(function(error) {
+                return error;
+            }
+        ));
+    },
+    signUpGoogle: (params) => {
+        const url = "/auth/signin/google-sign-up?id_token=" + params;
+        return(axiosClient.post(
+            url).then(function(response) {
+                return response.data;
+            }).catch(function(error) {
+                return error;
+            }
+        ));
+    },
     getInfo: (param) => {
         const url = "/users/" + param;
         return(axiosClient.get(
@@ -57,8 +77,12 @@ const userAPI = {
                 email: param.email,
                 fullName: param.fullName,
                 DOB: param.DOB,
-                password: param.password
-        }));
+                studentID: param.studentID
+            },
+            {
+            headers: authHeader()
+            }
+        ));
     }
 }
 export default userAPI;

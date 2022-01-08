@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import userApi from "../../api/userAPI";
 import { GoogleLogin } from "react-google-login";
 import { useNavigate } from "react-router-dom";
+
 const Login = ({ isAuth }) => {
   const initialValues = {
     username: "",
@@ -20,6 +21,7 @@ const Login = ({ isAuth }) => {
 
   const handleSubmit = async (values) => {
     const response = await userApi.signIn(values);
+    console.log(response);
     if (response.accessToken !== undefined) {
       localStorage.setItem("user", JSON.stringify(response));
       navigate("/classes");
@@ -27,8 +29,17 @@ const Login = ({ isAuth }) => {
     }
   };
 
-  const onGoogleLoginSuccess = (googleAuth) => {
+  const onGoogleLoginSuccess = async (googleAuth) => {
     console.log("Google login success", googleAuth);
+    const response = await userApi.signInGoogle(googleAuth.tokenId);
+    if (response === undefined){
+      navigate("/register");
+    }
+    else{
+      localStorage.setItem("user", JSON.stringify(response));
+      navigate("/classes");
+      window.location.reload(false);
+    }
   };
 
   const onGoogleLoginFailure = (error) => {
@@ -96,7 +107,8 @@ const Login = ({ isAuth }) => {
           buttonText="Login with Google"
           onSuccess={onGoogleLoginSuccess}
           onFailure={onGoogleLoginFailure}
-          cookiePolicy={"single_host_origin"}
+          cookiePolicy={"single_host_origin"} 
+          className="mt-2"
         />
       </div>
     </div>

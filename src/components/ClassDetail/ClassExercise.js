@@ -9,11 +9,14 @@ import assignmentAPI from "../../api/assignmentAPI";
 import {Add} from '@material-ui/icons';
 import Fade from '@material-ui/core/Fade';
 import {Link} from 'react-router-dom';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 const ClassExercise = (props) => {
-  var disable = false;
   const user = JSON.parse(localStorage.getItem("user") || "[]");
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const [assignList, setAssignList] = useState([]);
 
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClickButton = (event) => setAnchorEl2(event.currentTarget);
@@ -36,9 +39,6 @@ const ClassExercise = (props) => {
     handleClose();
     setFormConfirmDeleteDialog(true);
   };
-
-  const [assignList, setAssignList] = useState([]);
-
   useEffect(() => {
     const fetchAssignList = async () => {
       try {
@@ -51,11 +51,16 @@ const ClassExercise = (props) => {
       }
     };
     fetchAssignList();
-    if(user.roles[0] === "ROLE_TEACHER"){
-      disable = true;
-    };
   }, [props.items.id]);
-  console.log(user.roles[0]);
+  
+  const updateList = (list) => {
+    console.log("run list");
+    var i = 1;
+    list.map((item) => {
+      assignmentAPI.updateAssigment(i, item);
+      i++;
+    })
+  }
   return (
     <div>
     <div className="main">
@@ -63,7 +68,7 @@ const ClassExercise = (props) => {
       <div className="main__wrapper">
         <div className="main__announce">
           <div className="main__status">
-            <Button disabled={disable} onClick={handleClick}>+ Create</Button>
+            <Button disabled={!(user.roles[0]==="ROLE_TEACHER")} onClick={handleClick}>+ Create</Button>
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
@@ -78,32 +83,52 @@ const ClassExercise = (props) => {
             <div className="main__ancContent">
                   <h1>Assignments</h1>
                   <hr className="mt-2"/>
-                  <div className="assign__list">
-                      {assignList.map((assign) => 
-                      <div key={assign.id}>
-                        <div className="assign__form assign_btn"><Link to={"/assign/" + assign.id} className="assign__form"><Assignment/><span>&nbsp;{assign.assignmentTitle}</span></Link>
-                          <div className="form_btn_add">
-                          <Add aria-controls="fade-menu" aria-haspopup="true" onClick={handleClickButton}></Add>
-                          <Menu
-                            id="fade-menu"
-                            anchorEl={anchorEl2}
-                            keepMounted
-                            open={Boolean(anchorEl2)}
-                            onClose={handleClose2}
-                            TransitionComponent={Fade}
-                          >
-                            <MenuItem onClick={handleFormDelete}>Delete</MenuItem>
-                            <MenuItem onClick={handleClose2}>Change</MenuItem>
-                          </Menu>
-                          </div>
-                          <FormConfirmDelete 
-                            assign_id ={assign.id} 
-                            class_id = {props.items.id}/>
-                        </div>
-                        <hr/>
+                  <DragDropContext
+                    onDragEnd={(param)=>{
+                      const srcI = param.source.index;
+                      const desI = param.destination.index;
+                      const list = assignList;
+                      list.splice(desI, 0, list.splice(srcI,1)[0]);
+                      setAssignList(list);
+                      updateList(list);
+                    }} className="assign__list">
+                      <Droppable droppableId="droppable-1">{(provided) => (
+                        <div ref={provided.innerRef} {... provided.droppableProps}>
+                          {assignList.map((assign, i) => 
+                          <Draggable key={assign.id} draggableId={"draggable-" + assign.id} index={i}>
+                            {(provided) => (
+                              <div ref={provided.innerRef} 
+                              {... provided.draggableProps} 
+                              {...provided.dragHandleProps}>
+                                <div className="assign__form assign_btn"><Link to={"/assign/" + assign.id} className="assign__form"><Assignment/><span>&nbsp;{assign.assignmentTitle}</span></Link>
+                                  <div className="form_btn_add">
+                                    <Add aria-controls="fade-menu" aria-haspopup="true" onClick={handleClickButton}></Add>
+                                    <Menu
+                                      id="fade-menu"
+                                      anchorEl={anchorEl2}
+                                      keepMounted
+                                      open={Boolean(anchorEl2)}
+                                      onClose={handleClose2}
+                                      TransitionComponent={Fade}
+                                    >
+                                      <MenuItem onClick={handleFormDelete}>Delete</MenuItem>
+                                      <MenuItem onClick={handleClose2}>Change</MenuItem>
+                                    </Menu>
+                                  </div>
+                                  <FormConfirmDelete 
+                                    assign_id ={assign.id} 
+                                    class_id = {props.items.id}/>
+                                </div>
+                                <hr/>
+                              </div>
+                            )}
+                          </Draggable>
+                          )}
+                          {provided.placeholder}
                         </div>
                       )}
-                  </div>
+                      </Droppable>
+                  </DragDropContext>
             </div>
           </div>
         </div>
@@ -111,11 +136,6 @@ const ClassExercise = (props) => {
         <FormClassEx items={props.items}/>
       </div>
     </div>
-    {/* <Routes>
-    {assignList.map((assign) =>
-      <Route path={"/"+props.items.id+"/excercises/"+assign.id} element={<Login/>}/>
-    )}
-    </Routes> */}
     </div>
   );
 };
