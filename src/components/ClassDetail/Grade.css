@@ -1,14 +1,13 @@
 .label__form{
   width: 80vw;
   display: flex!important;
-  margin-top: 2%;
-  margin-left: 2%;
+  margin-top: 1%
 }
+.main{padding: 0 2vw; margin: 0}
 .value__form{
   width: 80vw;
   display: flex!important;
-  margin-top: 0;
-  margin-left: 2%;
+  margin: 0
 }
 .label__item{
   width: 20%;
@@ -29,4 +28,8 @@
 }
 .point__input{
   width: 15%
+}
+.upload_student{
+  width: 10vw;
+  margin-top: 1% !important;
 }
