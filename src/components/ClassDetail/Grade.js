@@ -98,7 +98,7 @@ const Grade = (props) => {
                   <div
                     className="info__item"
                     style={{
-                      color: student.accountLinkTo !== null ? "black" : "red",
+                      color: student.accountLinkTo !== "" ? "black" : "red",
                     }}
                   >
                     {student.fullName}

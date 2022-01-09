@@ -73,6 +73,12 @@
 .main__code {
   font-weight: 500;
   font-style: normal;
+  font-size: large;
+}
+.main__id{
+  margin-top: 5pt;
+  font-size: 18pt;
+  color: bisque;
 }
 .main__announce {
   display: flex;
