@@ -7,16 +7,31 @@ import { Formik, Form, Field } from "formik";
 import { Button } from "@material-ui/core";
 import "./Grade.css";
 import assignmentAPI from "../../api/assignmentAPI";
+import { ExportExcel } from "../ExportToExcel/ExportExcel";
 
 const Grade = (props) => {
   const [studentList, setStudentList] = useState([]);
   const [assignList, setAssignList] = useState([]);
-  
+
+  const exportGrade = [{ "Student ID": "", "Grade": "" }];
+
+  const fileNameGrade = "grade-template";
+
+  const text1 = "Grade";
+
+  const exportStudent = [{ "Student ID": "", "Full Name": "" }];
+
+  const fileNameStudent = "student-template";
+
+  const text2 = "Student List";
+
   useEffect(() => {
     const fetchClassesList = async () => {
       try {
         const response1 = await gradeAPI.getStudentListUpload(props.items.id);
-        const response2 = await assignmentAPI.getAssignmentInClass(props.items.id);
+        const response2 = await assignmentAPI.getAssignmentInClass(
+          props.items.id
+        );
         setStudentList(response1.data);
         setAssignList(response2.data);
         console.log(studentList);
@@ -49,18 +64,26 @@ const Grade = (props) => {
       <HeaderClass items={props.items} />
       <div className="grade_board">
         <div className="input_file">
-        <label className="mt-5 ">
-          <input name="upload-file " type="file" onChange={changeHandler} />
-          <Button
-            variant="contained"
-            color="primary"
-            className="upload_student"
-            onClick={handleSubmission}
-          >
-            Upload File
-          </Button>
-        </label>
+          <label className="mt-5 ">
+            <input name="upload-file " type="file" onChange={changeHandler} />
+            <Button
+              variant="contained"
+              color="primary"
+              className="upload_student"
+              onClick={handleSubmission}
+            >
+              Upload File
+            </Button>
+          </label>
         </div>
+        <div>
+          <ExportExcel csvData={exportGrade} fileName={fileNameGrade} text={text1} />
+        </div>
+        <br/>
+        <div>
+          <ExportExcel csvData={exportStudent} fileName={fileNameStudent} text={text2} />
+        </div>
+
         <Formik initialValues={initialValues}>
           {(data) => (
             <Form className="form_grade">
@@ -72,18 +95,25 @@ const Grade = (props) => {
               </div>
               {studentList.map((student) => (
                 <div className="value__form">
-                  <div className="info__item" style={{ color: student.accountLinkTo !== null ? "black" : "red" }}>{student.fullName}</div>
-                  {assignList.map((assign) => (
-                  <div className="label__item">
-                    <Field
-                      key={assign.id}
-                      as={TextField}
-                      type="text"
-                      name={"point" + assign.id + student.id}
-                      className="point__input"
-                    />
-                    <h5 className="fw_normal">/{assign.point}</h5>
+                  <div
+                    className="info__item"
+                    style={{
+                      color: student.accountLinkTo !== null ? "black" : "red",
+                    }}
+                  >
+                    {student.fullName}
                   </div>
+                  {assignList.map((assign) => (
+                    <div className="label__item">
+                      <Field
+                        key={assign.id}
+                        as={TextField}
+                        type="text"
+                        name={"point" + assign.id + student.id}
+                        className="point__input"
+                      />
+                      <h5 className="fw_normal">/{assign.point}</h5>
+                    </div>
                   ))}
                 </div>
               ))}
