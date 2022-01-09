@@ -7,18 +7,13 @@ import './Register.css';
 import * as Yup from 'yup';
 import userApi from '../../api/userAPI';
 
-const Register = ({handleChange}) => {
+const RegisterAdmin = ({handleChange}) => {
   const initialValues={
     username:'',
     name:'',
     email:'',
     password:'',
     confirmpassword: '',
-  };
-  
-  const [value, setValue] = React.useState('student');
-  const handleValue = (event) => {
-    setValue(event.target.value);
   };
 
   const [errorMessage, setErrorMessage] = React.useState("");
@@ -38,7 +33,7 @@ const Register = ({handleChange}) => {
         props.setSubmitting(true)
       },200)
       console.log(props);
-      userApi.signUp(values,value);
+      userApi.signUpAdmin(values);
       setErrorMessage("Sign up successfully");
     }
     else{
@@ -49,7 +44,7 @@ const Register = ({handleChange}) => {
   return (
     <div className="login">
         <div className="loginForm">
-            <h1 className="login__title">REGISTER</h1>
+            <h1 className="login__title">ADMIN REGISTER</h1>
           <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             {(props) => (
               <Form className="loginForm mt-5 w-20">
@@ -95,13 +90,9 @@ const Register = ({handleChange}) => {
                 className="login__input"
                 helperText={<ErrorMessage name="password"/>}
                 />
-                <RadioGroup  className="checkbox d-flex" value={value} onChange={handleValue}>
-                  <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />
-                  <FormControlLabel value="student" control={<Radio />} label="Student" />  
-                </RadioGroup >
                 {errorMessage && <div> {errorMessage} </div>}
                 <div className="form__btn">
-                <Link to={`/`}>
+                <Link to={`/admin`}>
                   <Button
                     className="Login__btn"
                     variant="outlined"
@@ -126,4 +117,4 @@ const Register = ({handleChange}) => {
     </div>
   );
 }
-export default Register;
+export default RegisterAdmin;

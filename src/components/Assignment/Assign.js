@@ -12,7 +12,6 @@ const Assign = (props) => {
         const response = await classroomAPI.getTeacher(props.items.classId);
         if(response.data){
           setTeacher(response.data[0]);
-          console.log(teacher);
         };
       } catch (error) {
         console.log("Fail to fetch", error);

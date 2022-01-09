@@ -1,5 +1,5 @@
 import React, {useState, useEffect}  from "react";
-import { Login,ClassInfo,Register, Classes,ClassExercise,Grade, Assign} from "./components";
+import { Login,ClassInfo,Register, Classes,ClassExercise,Grade, Assign,LoginAdmin,RegisterAdmin} from "./components";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import classroomAPI from "./api/classroomAPI";
 import assignmentAPI from "./api/assignmentAPI";
@@ -29,6 +29,8 @@ function App() {
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/> 
         <Route path='/classes' element={<Classes c_list = {classesList}/>}/>  
+        <Route path='/admin' element={<LoginAdmin/>}/> 
+        <Route path="/admin/register" element={<RegisterAdmin/>}/> 
         {classesList.map((classroom) => 
           <Route path={"/" + classroom.id} element={<div><ClassInfo items={classroom}/></div>}></Route>
         )}

@@ -16,7 +16,9 @@ const FormEx = (props) => {
         instruction:'',
         point:'',
         dueDate:'',
-        classId: props.items.id
+        classId: props.items.id,
+        scale: '',
+        isFinal: false
     }
 
     const onSubmit=(values,data)=>{
@@ -99,7 +101,6 @@ const FormEx = (props) => {
                                         id="datetime-local"
                                         label="Deadline"
                                         type="datetime-local"
-                                        defaultValue="2017-05-24T10:30"
                                         className="textField"
                                         name="dueDate"
                                         InputLabelProps={{
@@ -107,6 +108,15 @@ const FormEx = (props) => {
                                         }}
                                     />
                                 </form>
+                                <Field
+                                    as={TextField}
+                                    id="outlined-basic"
+                                    label="Scale (%)"
+                                    name="scale"
+                                    variant="outlined"
+                                    className="scale_input"
+                                >
+                                </Field>
                             </div>
                         </div>
                     </Form>

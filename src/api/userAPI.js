@@ -27,7 +27,35 @@ const userAPI = {
             );
         }
     },
+    signUpAdmin: (param) =>{
+        const url = "/auth/signup";
+        return axiosClient.post(
+            url,
+            {
+                username: param.username,
+                password: param.password,
+                fullName: param.name,
+                email: param.email,
+                roles: ["admin"]
+            }
+        );
+    },
     signIn: (param) => {
+        const url = "/auth/signin";
+        return(axiosClient.post(
+        url,
+        {
+            username: param.username,
+            password: param.password,
+        }
+        ).then(function(response) {
+            return response;
+        }).catch(function(error) {
+            return error;
+        }
+        ));
+    },
+    signInAdmin: (param) => {
         const url = "/auth/signin";
         return(axiosClient.post(
         url,
@@ -65,7 +93,10 @@ const userAPI = {
     getInfo: (param) => {
         const url = "/users/" + param;
         return(axiosClient.get(
-            url
+            url,
+            {
+            headers: authHeader()
+            }
         ));
     },
     changeInfo: (user_id, param) => {

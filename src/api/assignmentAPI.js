@@ -8,8 +8,7 @@ const assignmentAPI = {
             url,
             {
             headers: authHeader()
-            }
-            )
+            })
         )
     },
     getAllAssignment: () =>{
@@ -27,11 +26,10 @@ const assignmentAPI = {
         const url = "/assignments?c_id=" + params;
         return (
             axiosClient.get(
-            url,{params},
+            url,
             {
             headers: authHeader()
-            }
-            )
+            })
         )
     },
     createAssignment: (param) =>{
@@ -44,12 +42,13 @@ const assignmentAPI = {
                 instruction: param.instruction,
                 point: param.point,
                 dueDate: param.dueDate,
-                classId: param.classId
+                classId: param.classId,
+                scale: param.scale,
+                isFinal: param.isFinal
             },
             {
             headers: authHeader()
-            }
-            )
+            })
         )
     },
     deleteAssignment: (req, res, param) =>{
