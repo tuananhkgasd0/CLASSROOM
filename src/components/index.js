@@ -1,5 +1,8 @@
 export {default as Header} from './Header/Header';
-export {default as Classes} from './Classes/Classes';
+export {default as Classes} from './Home/Classes';
+export {default as ManageAdmin} from './Home/ManageAdmin';
+export {default as ManageUser} from './Home/ManageUser';
+export {default as ManageClass} from './Home/ManageClass';
 export {default as CreateClass} from './CreateClass/CreateClass';
 export {default as JoinClass} from './JoinClass/JoinClass'; 
 export {default as JoinedClasses} from './JoinedClasses/JoinedClasses';
@@ -17,4 +20,6 @@ export {default as FormEx} from './Form/FormEx';
 export {default as FormClassEx} from './Form/FormClassEx';  
 export {default as FormConfirmDelete} from './Form/FormConfirmDelete';  
 export {default as ChangeProfile} from './ChangeProfile/ChangeProfile'; 
+export {default as AdminDetail} from './Assignment/AdminDetail'; 
+export {default as UserDetail} from './Assignment/UserDetail'; 
 export {default as Assign} from './Assignment/Assign'; 

@@ -48,5 +48,9 @@ export const useStyles = makeStyles((theme) => ({
     },
     menu: {
         marginRight: "100px",
+    },
+    button:{
+        padding: "0 2vw",
+        textDecoration: "none",
     }
 }));    

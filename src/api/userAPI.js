@@ -123,6 +123,64 @@ const userAPI = {
                 activationToken: param.verifycode
             }
         ));
+    },
+    getAdminList: () => {
+        const url = "/admins";
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    }, 
+    getAdminDetail: (param) => {
+        const url = "/admins/detail/" + param;
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    }, 
+    getUserList: () => {
+        const url = "/users";
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    },  
+    getUserDetail: (param) => {
+        const url = "admins/users/" + param;
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    }, 
+    getClassList: () => {
+        const url = "/admins/classes";
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    },
+    getClassDetail: (param) => {
+        const url = "/admins/classes" + param;
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    }, 
+    banUser: (param) => {
+        const url = "/admins/users/" + param;
+        return(axiosClient.delete(url, {headers: authHeader()}))
     }
 }
 export default userAPI;
