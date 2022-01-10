@@ -30,6 +30,7 @@ function App() {
         <Route path="/register" element={<Register/>}/> 
         <Route path='/classes' element={<Classes c_list = {classesList}/>}/>  
         <Route path='/admin' element={<LoginAdmin/>}/> 
+        <Route path='/admin/MangerUser' element={<LoginAdmin/>}/> 
         <Route path='/verify' element={<Verify/>}/> 
         <Route path="/admin/register" element={<RegisterAdmin/>}/> 
         {classesList.map((classroom) => 

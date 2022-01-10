@@ -18,6 +18,8 @@ const LoginAdmin = ({ isAuth }) => {
   });
   let navigate = useNavigate();
 
+  const [errorMessage, setErrorMessage] = React.useState("");
+
   const handleSubmit = async (values) => {
     const response = await userApi.signInAdmin(values);
     if (response.roles[0] === 'ROLE_ADMIN') {
@@ -26,7 +28,7 @@ const LoginAdmin = ({ isAuth }) => {
       navigate("/admin/MangerUser");
     }
     else {
-      console.log("This account is not an admin account");
+      setErrorMessage("This account is not an admin account");
     }
   };
 
@@ -60,6 +62,7 @@ const LoginAdmin = ({ isAuth }) => {
                 className="login__input"
                 helperText={<ErrorMessage name="password" />}
               />
+              {errorMessage && <div> {errorMessage} </div>}
               <div className="form__btn">
                 <Link to={`/admin/register`}>
                   <Button
