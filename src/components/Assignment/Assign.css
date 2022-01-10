@@ -31,3 +31,14 @@
 .title_assign{align-items: center}
 .w-100{width: 100%;}
 .skin{color:#8a5a44}
+.admin_detail{margin-top: 2%;
+padding: 2vh 0 2vh 2vw}
+h3 b{color: black!important;margin-right: 2%!important;}
+.create_admin{
+    color: white; 
+    background-color: #081c15;
+    padding: 1% 3%; 
+    text-decoration: none; 
+    border-radius: 5px;
+    font-weight: 400;
+}

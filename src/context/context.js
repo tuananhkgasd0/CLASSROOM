@@ -33,6 +33,6 @@ export function ContextProvider({children}){
         formConfirmDeleteDialog, 
         setFormConfirmDeleteDialog,
         assignDialog,
-        setAssignDialog};
+        setAssignDialog,};
     return <AddContext.Provider value = {value}> {children} </AddContext.Provider>;
 }

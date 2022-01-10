@@ -25,7 +25,7 @@ const LoginAdmin = ({ isAuth }) => {
     if (response.roles[0] === 'ROLE_ADMIN') {
       console.log("OK")
       localStorage.setItem("user", JSON.stringify(response));
-      navigate("/admin/MangerUser");
+      navigate("/admin/manage/admin");
     }
     else {
       setErrorMessage("This account is not an admin account");

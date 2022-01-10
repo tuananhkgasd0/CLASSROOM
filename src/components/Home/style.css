@@ -1,0 +1,20 @@
+.class__root{
+    margin: 0 3%;
+}
+.bg-gray{background-color: #ffe0b2;
+height: 100vh;} 
+.mt-5{margin-top:3%}
+.class__center{
+    display: flex;
+    flex-wrap: wrap;
+}
+.employee-list{}
+.row{ display: flex;}
+.column{width: 15vw; border: solid 1px black;background-color: #fff; padding-left: 1vw!important; align-self: center; height: 5vh !important;}
+.class__center{flex-direction: column;}
+.btn_detail{text-decoration: none!important}
+.align-item-center{align-items: center}
+.ml-auto{margin-left: auto!important}
+.form_admin{width: 65vw!important; margin: 0 auto !important}
+.w-100{width: 100%!important}
+.color-brown{color: #344e41}
