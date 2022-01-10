@@ -5,6 +5,7 @@ export {default as JoinClass} from './JoinClass/JoinClass';
 export {default as JoinedClasses} from './JoinedClasses/JoinedClasses';
 export {default as Login} from './Login/Login';
 export {default as Register} from './Register/Register';
+export {default as Verify} from './Register/Verify';
 export {default as LoginAdmin} from './Login/LoginAdmin';
 export {default as RegisterAdmin} from './Register/RegisterAdmin';
 export {default as ClassInfo} from './ClassDetail/ClassInfo';

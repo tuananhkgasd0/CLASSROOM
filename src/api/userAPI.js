@@ -114,6 +114,15 @@ const userAPI = {
             headers: authHeader()
             }
         ));
+    },
+    activateAccount: (param) => {
+        const url = "/auth/verify-account/";
+        return(axiosClient.post(
+            url,
+            {
+                activationToken: param.verifycode
+            }
+        ));
     }
 }
 export default userAPI;
