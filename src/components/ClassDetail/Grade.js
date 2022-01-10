@@ -47,16 +47,28 @@ const Grade = (props) => {
   };
 
   const [selectedFile, setSelectedFile] = useState();
+  const [value, setValue] = React.useState({
+    s_id: '',
+    a_id: '',
+    point: '',
+  });
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
+
+  const changePoint = (event) => {
+    setValue(event.target.value);
+  }
+
   const handleSubmission = () => {
     const data = new FormData();
     data.append("file", selectedFile);
     gradeAPI.uploadFile(props.items.id, data);
-    // window.location.reload(false);
   };
 
   return (
@@ -111,6 +123,8 @@ const Grade = (props) => {
                         type="text"
                         name={"point" + assign.id + student.id}
                         className="point__input"
+                        value={value.point   }
+                        onChange={changePoint}
                       />
                       <h5 className="fw_normal">/{assign.point}</h5>
                     </div>
