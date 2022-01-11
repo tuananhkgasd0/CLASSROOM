@@ -39,7 +39,7 @@ const Register = ({handleChange}) => {
       },200)
       console.log(props);
       userApi.signUp(values,value);
-      setErrorMessage("Sign up successfully");
+      setErrorMessage("Sign up successfully! Please check your email to activate your account.");
     }
     else{
       console.log("confirm password is incorrect");
