@@ -35,7 +35,6 @@ const ChangeProfile = () => {
         const fetchUserInfo = async () => {
           try {
             const response = await userAPI.getInfo(user.id);
-            console.log(userInfo);
             setUserInfo(response.data);
           } catch (error) {
             console.log("Fail to fetch", error);

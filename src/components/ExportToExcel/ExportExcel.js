@@ -1,6 +1,7 @@
 import React from "react";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
+import { Button } from "@material-ui/core";
 
 export const ExportExcel = ({ csvData, fileName, text }) => {
   const fileType =
@@ -17,9 +18,9 @@ export const ExportExcel = ({ csvData, fileName, text }) => {
   };
 
   return (
-    <button onClick={(e) => exportToCSV(csvData, fileName)}>
+    <Button variant="outlined" color="primary" onClick={(e) => exportToCSV(csvData, fileName)}>
       Download template for {text}
-    </button>
+    </Button>
   );
 };
 

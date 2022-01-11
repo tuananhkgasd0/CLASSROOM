@@ -19,7 +19,7 @@ const AdminDetail = (props) => {
     fetchAssignList();
   }, [props.items.id]);
   return (
-    <div className="main">
+    <div className="main bg-gray">
       <HeaderAdmin/>
       <div className="invite">
           <div className="assign_form">

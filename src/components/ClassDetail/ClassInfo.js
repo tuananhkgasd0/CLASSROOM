@@ -38,10 +38,9 @@ const ClassInfo = (props) => {
                 {props.items.teacherName}
               </div>
               <div className="main__wrapper2">
-                <div className="main__code">Class Code: 
-                {props.items.classCode}</div>
+                <div className="main__code">Class Code:</div>
                 <div className="main__id"> 
-                {props.items.classCode}
+                  {props.items.classCode}
                 </div>
               </div>
             </div>

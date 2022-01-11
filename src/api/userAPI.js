@@ -181,6 +181,14 @@ const userAPI = {
     banUser: (param) => {
         const url = "/admins/users/" + param;
         return(axiosClient.delete(url, {headers: authHeader()}))
+    }, 
+    userMapId: (param) => {
+        const url = "/admins/users/" + param;
+        return(axiosClient.post(url, {headers: authHeader()}))
+    }, 
+    userUnMapId: (param) => {
+        const url = "/admins/users/" + param;
+        return(axiosClient.post(url, {headers: authHeader()}))
     }
 }
 export default userAPI;

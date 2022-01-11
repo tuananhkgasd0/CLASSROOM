@@ -22,9 +22,11 @@ const gradeAPI = {
       .get(url,
         {
         headers: authHeader()
-        }).then(function(response) {
+        })
+      .then(function(response) {
           return response;
-      }).catch(function(error) {
+      })
+      .catch(function(error) {
           return error;
     })
   },

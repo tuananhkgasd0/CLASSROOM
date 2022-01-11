@@ -8,6 +8,11 @@ height: 100vh;}
     display: flex;
     flex-wrap: wrap;
 }
+.class__center2{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
 .employee-list{}
 .row{ display: flex;}
 .column{width: 15vw; border: solid 1px black;background-color: #fff; padding-left: 1vw!important; align-self: center; height: 5vh !important;}
@@ -18,3 +23,4 @@ height: 100vh;}
 .form_admin{width: 65vw!important; margin: 0 auto !important}
 .w-100{width: 100%!important}
 .color-brown{color: #344e41}
+.bg-gray{background-color: #ffe0b2!important;}

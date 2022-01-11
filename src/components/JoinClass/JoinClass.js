@@ -13,11 +13,11 @@ const JoinClass = () => {
     const {joinClassDialog,setJoinClassDialog} = useLocalContext();
     const user = JSON.parse(localStorage.getItem("user") || "[]");
     const initialValues={
-        c_id:'',
+        c_code:'',
         u_id:user.id,
     }
     const onSubmit=(values)=>{
-        classroomAPI.addUser(values);
+        classroomAPI.joinClassByCode(values);
         console.log(values);
         window.location.reload(false);
     }
@@ -54,7 +54,7 @@ const JoinClass = () => {
                                         id="outlined-basic"
                                         label="Class Code"
                                         variant="outlined"
-                                        name="c_id"
+                                        name="c_code"
                                         className="joinClass__input"
                                     >
                                     </Field>

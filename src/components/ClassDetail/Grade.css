@@ -28,15 +28,13 @@
 .point__input{
   width: 20%
 }
-.upload_student{
-  width: 10vw;
-}
 .grade_board{
   padding: 0 5vw;
   height: 100vh!important;}
 .input_file{
-  align-items: center!important;
-  margin-top: 1%!important;
+  border: solid 1px #808080;
+  padding: 1.5% 0 1.5% 1.5% ;
+  border-radius:5px;
 }
 .form_grade{
   overflow-x: scroll;
@@ -45,3 +43,6 @@
 .fw_normal{
   font-weight: normal!important;
 }
+.upload_form{width: 25vw}
+.ml-2{margin-left: 2% !important;}
+.mt-1{margin-top: 1%;}

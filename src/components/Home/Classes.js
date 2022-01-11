@@ -5,19 +5,12 @@ import Header from '../Header/Header';
 import { useNavigate } from "react-router-dom";
 
 const Classes = (props) => {
-  const user = JSON.parse(localStorage.getItem("user") || "[]");
-  let navigate = useNavigate();
-  console.log(user);
-  if(user.length === 0) {
-    navigate("/");
-    window.location.reload(false);
-  }
-
+  console.log(props)
   return(
       <div className="bg-gray">
           <Header/>
           <div className="class__root mt-5">
-            <div className="class__center">
+            <div className="class__center2">
                 {props.c_list.map((classroom) => 
                 <JoinedClasses 
                     id = {classroom.id}

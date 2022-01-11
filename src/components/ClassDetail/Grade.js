@@ -29,12 +29,19 @@ const Grade = (props) => {
     const fetchClassesList = async () => {
       try {
         const response1 = await gradeAPI.getStudentListUpload(props.items.id);
-        const response2 = await assignmentAPI.getAssignmentInClass(
-          props.items.id
-        );
         setStudentList(response1.data);
+      } catch (error) {
+        console.log("Fail to fetch", error);
+      }
+    };
+    fetchClassesList();
+  }, [props.items.id]);
+
+  useEffect(() => {
+    const fetchClassesList = async () => {
+      try {
+        const response2 = await assignmentAPI.getAssignmentInClass(props.items.id);
         setAssignList(response2.data);
-        console.log(studentList);
       } catch (error) {
         console.log("Fail to fetch", error);
       }
@@ -69,31 +76,32 @@ const Grade = (props) => {
     const data = new FormData();
     data.append("file", selectedFile);
     gradeAPI.uploadFile(props.items.id, data);
+    window.location.reload(false);
   };
 
   return (
     <div>
       <HeaderClass items={props.items} />
       <div className="grade_board">
-        <div className="input_file">
-          <label className="mt-5 ">
-            <input name="upload-file " type="file" onChange={changeHandler} />
-            <Button
-              variant="contained"
-              color="primary"
-              className="upload_student"
-              onClick={handleSubmission}
-            >
-              Upload File
-            </Button>
-          </label>
-        </div>
-        <div>
-          <ExportExcel csvData={exportGrade} fileName={fileNameGrade} text={text1} />
-        </div>
-        <br/>
-        <div>
-          <ExportExcel csvData={exportStudent} fileName={fileNameStudent} text={text2} />
+          <div className="upload_form mt-1">
+            <label className="mt-5">
+              <input name="upload-file " type="file" onChange={changeHandler} className="input_file"/>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSubmission}
+              >
+                Upload File
+              </Button>
+            </label>
+          </div>
+        <div className="d-flex align-item-center mt-1">
+          <div>
+            <ExportExcel csvData={exportGrade} fileName={fileNameGrade} text={text1} />
+          </div>
+          <div className="ml-2">
+            <ExportExcel csvData={exportStudent} fileName={fileNameStudent} text={text2} />
+          </div>
         </div>
 
         <Formik initialValues={initialValues}>

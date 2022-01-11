@@ -4,41 +4,86 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import classroomAPI from "./api/classroomAPI";
 import assignmentAPI from "./api/assignmentAPI";
 import userAPI from "./api/userAPI";
-import { useNavigate } from "react-router-dom";
 function App() {
   const [classesList, setClassesList] = useState([]);
-  const [classList, setClassList] = useState([]);
   const [assignList, setAssignList] = useState([]);
   const [adminList, setAdminList] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [classList, setClassList] = useState([]);
   const token = JSON.parse(localStorage.getItem("user") || "[]");
   useEffect(() => {
     const fetchClassesList = async () => {
       try {
         const classesResponse = await classroomAPI.getAllClasses(token.id);
-        const assignResponse = await assignmentAPI.getAllAssignment();
-        const adminResponse = await userAPI.getAdminList();
-        const userResponse = await userAPI.getUserList();
-        const classResponse = await userAPI.getClassList();
-        if(classResponse && assignResponse && adminResponse && userResponse){
-          setClassesList(classesResponse.data);
-          setAssignList(assignResponse.data);
-          setAdminList(adminResponse.data);
-          setUserList(userResponse);
-          setClassList(classResponse.data);
-        };
+        if(classesResponse)
+        {
+        setClassesList(classesResponse.data);
+        }
       } catch (error) {
         console.log("Fail to fetch", error);
       }
     };
     fetchClassesList();
   }, [token.id]);
+
+  useEffect(() => {
+    const fetchClassesList = async () => {
+      try {
+        const userResponse = await userAPI.getUserList();
+        setUserList(userResponse);
+        }
+      catch (error) {
+        console.log("Fail to fetch", error);
+      }
+    };
+    fetchClassesList();
+  }, []);
+
+  useEffect(() => {
+    const fetchClassesList = async () => {
+      try {
+        const classResponse = await userAPI.getClassList();
+        setClassList(classResponse.data);
+        }
+      catch (error) {
+        console.log("Fail to fetch", error);
+      }
+    };
+    fetchClassesList();
+  }, []);
+
+  useEffect(() => {
+    const fetchClassesList = async () => {
+      try {
+        const adminResponse = await userAPI.getAdminList();
+        setAdminList(adminResponse.data);
+        }
+      catch (error) {
+        console.log("Fail to fetch", error);
+      }
+    };
+    fetchClassesList();
+  }, []);
+
+  useEffect(() => {
+    const fetchClassesList = async () => {
+      try {
+        const assignResponse = await assignmentAPI.getAllAssignment();
+        setAssignList(assignResponse.data);
+        }
+      catch (error) {
+        console.log("Fail to fetch", error);
+      }
+    };
+    fetchClassesList();
+  }, []);
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/> 
-        <Route path='/classes' element={<Classes c_list = {classesList}/>}/>  
+        <Route path='/classes' element={<Classes c_list={classesList}/>}/>  
         <Route path='/admin' element={<LoginAdmin/>}/> 
         <Route path='/admin/manage/admin' element={<ManageAdmin/>}/> 
         <Route path='/admin/manage/user' element={<ManageUser/>}/> 

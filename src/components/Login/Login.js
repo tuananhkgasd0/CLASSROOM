@@ -18,14 +18,20 @@ const Login = ({ isAuth }) => {
     password: Yup.string().required("Required"),
   });
   let navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const handleSubmit = async (values) => {
     const response = await userApi.signIn(values);
-    console.log(response);
-    if (response.accessToken !== undefined) {
+    if (response.accessToken !== undefined && response.roles[0] !== 'ROLE_ADMIN') {
       localStorage.setItem("user", JSON.stringify(response));
       navigate("/classes");
       window.location.reload(false);
+    }
+    else if(response.roles[0] === 'ROLE_ADMIN'){
+      setErrorMessage("This account is admin account");
+    }
+    else if(!response){
+      setErrorMessage("Incorrect username or Password ");
     }
   };
 
@@ -77,9 +83,7 @@ const Login = ({ isAuth }) => {
                 className="login__input"
                 helperText={<ErrorMessage name="password" />}
               />
-              {/* <div style={{color: "red"}}>
-                  {values.errorMessage}
-                </div> */}
+              {errorMessage && <div> {errorMessage} </div>}
               <div className="form__btn">
                 <Link to={`/register`}>
                   <Button

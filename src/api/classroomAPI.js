@@ -3,13 +3,11 @@ import authHeader from "./auth-header";
 
 const classroomAPI = {
   getAllClasses: (param) => {
-    const url = "/classes/user/"+param;
-    return axiosClient.get(
-      url, 
+    const url = "/classes/user/" + param;
+    return axiosClient.get(url, 
       {
       headers: authHeader()
-      }
-    )
+      })
   },
   createClass: (data) => {
     const url = "/classes";
@@ -23,12 +21,12 @@ const classroomAPI = {
   },
   getStudent: (param) => {
     const url = "/student/?c_id=" + param;
-    return axiosClient.get(
+    return(axiosClient.get(
       url, 
       {
-      headers: authHeader()
+        headers: authHeader()
       }
-    ) 
+    ))
   },
   getTeacher: (param) => {
     const url = "/teacher/?c_id=" + param;
@@ -54,6 +52,14 @@ const classroomAPI = {
   },
   inviteUser: (param) => {
     const url = "/addUser/join/?classid="+param.c_id + "&username=" + param.username;
+    return axiosClient.post(
+      url,{
+      headers: authHeader()
+      }
+    )
+  },
+  joinClassByCode: (param) => {
+    const url = "/classes/join-class?clsCode=" + param.c_code + "&userId=" + param.u_id;
     return axiosClient.post(
       url,{
       headers: authHeader()

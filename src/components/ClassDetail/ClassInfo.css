@@ -78,7 +78,8 @@
 .main__id{
   margin-top: 5pt;
   font-size: 18pt;
-  color: bisque;
+  color: white;
+  font-size: 1.3vw;
 }
 .main__announce {
   display: flex;

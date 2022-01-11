@@ -27,9 +27,17 @@ const UserDetail = (props) => {
     navigate("/admin/manage/user/");
     window.location.reload(false);
   }
+  function handleMap() {
+    userAPI.userMapId(props.items.id);
+    window.location.reload(false);
+  }
+  function handleUnMap() {
+    userAPI.userUnMapId(props.items.id);
+    window.location.reload(false);
+  }
 
   return (
-    <div className="main">
+    <div className="main bg-gray">
       <HeaderAdmin/>
       <div className="invite">
           <div className="assign_form">
@@ -38,7 +46,14 @@ const UserDetail = (props) => {
                     <h1 className="color-brown">USER DETAIL</h1>
                     <Button className="ml-auto" variant="contained" color="secondary" onClick={BanUser}>Ban User</Button>
                   </div>
-                  <h3 className="admin_detail"><b>ID:</b> {user.id}</h3>
+                  <h3 className="admin_detail"><b>Id:</b> {user.id}</h3>
+                  <div className="d-flex align-item-center">
+                    <h3 className="admin_detail"><b>Student Id:</b> {user.studentID}</h3>
+                    <div className="btn_form">
+                      <Button variant="contained" color="primary" disabled={user.studentID} onClick={handleMap}>Map</Button>
+                      <Button variant="contained" color="secondary" disabled={!user.studentID} className="ml-2" onClick={handleUnMap}>UnMap</Button>
+                    </div>
+                  </div>
                   <h3 className="admin_detail"><b>Username:</b> {user.username}</h3>
                   <h3 className="admin_detail"><b>Full Name:</b> {user.fullName}</h3>
                   <h3 className="admin_detail"><b>DOB:</b> {user.DOB}</h3>
