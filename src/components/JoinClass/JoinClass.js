@@ -10,15 +10,17 @@ const Transition = React.forwardRef(function Transition(props,ref){
 });
 
 const JoinClass = () => {
+    const token = JSON.parse(localStorage.getItem("user") || "[]");
     const {joinClassDialog,setJoinClassDialog} = useLocalContext();
-    const user = JSON.parse(localStorage.getItem("user") || "[]");
+    const [errorMessage, setErrorMessage] = React.useState("");
     const initialValues={
         c_code:'',
-        u_id:user.id,
+        u_id: token.id,
     }
-    const onSubmit=(values)=>{
-        classroomAPI.joinClassByCode(values);
-        // window.location.reload(false);
+    async function onSubmit(values){
+        const response = await classroomAPI.joinClassByCode(values);
+        setErrorMessage(response.errMessage)
+        window.location.reload(false);
     }
     return(
         <div>
@@ -58,6 +60,7 @@ const JoinClass = () => {
                                     >
                                     </Field>
                                 </div> 
+                                {errorMessage && <div className="mt-2"> {errorMessage} </div>}
                                 <div className="joinClass_btnform">
                                     <Button
                                         className="joinClass__btn"

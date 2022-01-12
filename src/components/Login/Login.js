@@ -71,7 +71,7 @@ const Login = ({ isAuth }) => {
                 type="text"
                 className="login__input"
                 name="username"
-                helperText={<ErrorMessage name="username" />}
+                helperText={<ErrorMessage name="username" className="error"/>}
               />
               <Field
                 as={TextField}
@@ -81,7 +81,7 @@ const Login = ({ isAuth }) => {
                 name="password"
                 autoComplete="current-password"
                 className="login__input"
-                helperText={<ErrorMessage name="password" />}
+                helperText={<ErrorMessage name="password" className="error"/>}
               />
               {errorMessage && <div> {errorMessage} </div>}
               <div className="form__btn">

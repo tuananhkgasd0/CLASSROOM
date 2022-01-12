@@ -15,10 +15,7 @@ const Verify = () => {
 
   async function onSubmit(values){
     const response = await userApi.activateAccount(values);
-    if(response.msg === undefined)
-      setErrorMessage("Verify Failed")
-    else
-      setErrorMessage(response.msg);
+    setErrorMessage(response.msg);
   };
   return (
     <div className="login">
@@ -34,7 +31,7 @@ const Verify = () => {
                 className="login__input"
                 name = "verifyCode"
                 multiline
-                helperText={<ErrorMessage name="username"/>}
+                helperText={<ErrorMessage name="verifyCode" className="error"/>}
                 />
                 {errorMessage && <div> {errorMessage} </div>}
                 <div className="form__btn">

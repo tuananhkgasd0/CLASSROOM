@@ -14,8 +14,7 @@ const VerifyClass = () => {
   });
 
   async function onSubmit(values){
-    const response = await classroomAPI.joinClassByCode(values);
-    console.log(response)
+    const response = await classroomAPI.inviteUser(values);
     setErrorMessage(response.errMessage);
   };
   return (
@@ -32,7 +31,7 @@ const VerifyClass = () => {
                 className="login__input"
                 name = "verifyCode"
                 multiline
-                helperText={<ErrorMessage name="username"/>}
+                helperText={<ErrorMessage name="verifyCode" className="error"/>}
                 />
                 {errorMessage && <div> {errorMessage} </div>}
                 <div className="form__btn">

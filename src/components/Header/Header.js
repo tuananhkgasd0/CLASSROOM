@@ -8,6 +8,7 @@ import {CreateClass, JoinClass,ChangeProfile} from '..';
 import logo from '../assets/logo.png'; 
 const Header = () =>{
     const classes = useStyles();
+    const user = JSON.parse(localStorage.getItem("user") || "[]");
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -48,7 +49,8 @@ const Header = () =>{
                             className={classes.menu}
                         >
                             <MenuItem onClick={handleJoin}>Join Class</MenuItem>
-                            <MenuItem onClick={handleCreate}>Create Class</MenuItem>   
+                            <MenuItem onClick={handleCreate} 
+                                disabled={!(user.roles[0]==="ROLE_TEACHER")}>Create Class</MenuItem>   
                         </Menu>
                         <div>
                             <Avatar onClick={handleChange}/>

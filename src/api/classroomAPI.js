@@ -51,19 +51,18 @@ const classroomAPI = {
     const url = "/addUser/join";
     return axiosClient.post(
       url,{
-        token: param
-      },{
-      headers: authHeader()
-      }
-    )
-  },
-  joinClassByCode: (param) => {
-    const url = "/addUser/join";
-    return axiosClient.post(
-      url,{
         token: param.verifyCode
       }
     )
-  }
+  },
+  joinClassByCode: (params) => {
+    const url = "/classes/join-class?classCode="+params.c_code+"&userId="+params.u_id;
+    return axiosClient.post(
+      url,{
+        headers: authHeader()
+      }
+    )
+  },
+
 };
 export default classroomAPI;

@@ -10,6 +10,7 @@ import assignmentAPI from "../../api/assignmentAPI";
 import { ExportExcel } from "../ExportToExcel/ExportExcel";
 
 const Grade = (props) => {
+  const user = JSON.parse(localStorage.getItem("user") || "[]");
   const [studentList, setStudentList] = useState([]);
   const [assignList, setAssignList] = useState([]);
 
@@ -83,18 +84,20 @@ const Grade = (props) => {
     <div>
       <HeaderClass items={props.items} />
       <div className="grade_board">
-          <div className="upload_form mt-1">
-            <label className="mt-5">
-              <input name="upload-file " type="file" onChange={changeHandler} className="input_file"/>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSubmission}
-              >
-                Upload File
-              </Button>
-            </label>
-          </div>
+          {user.roles[0]==="ROLE_TEACHER" &&
+            <div className="upload_form mt-1">
+              <label className="mt-5">
+                <input name="upload-file " type="file" onChange={changeHandler} className="input_file"/>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSubmission}
+                >
+                  Upload File
+                </Button>
+              </label>
+            </div>
+          }
         <div className="d-flex align-item-center mt-1">
           <div>
             <ExportExcel csvData={exportGrade} fileName={fileNameGrade} text={text1} />

@@ -4,7 +4,8 @@ import {Dialog, Slide,Button,TextField, Box,InputLabel,Select} from "@material-u
 import {Close} from "@material-ui/icons";
 import "./FormEx.css";
 import assignmentAPI from '../../api/assignmentAPI';
-import {Formik,Form, Field} from 'formik';
+import {Formik,Form, Field,ErrorMessage} from 'formik';
+import * as Yup from 'yup';
 
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>
@@ -22,9 +23,7 @@ const FormEx = (props) => {
     }
 
     const onSubmit=(values,data)=>{
-        console.log(values);
         assignmentAPI.createAssignment(values);
-        console.log(data);
         window.location.reload(false);
     }
 

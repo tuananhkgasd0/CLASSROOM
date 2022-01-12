@@ -76,7 +76,7 @@ const ClassExercise = (props) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
                 <MenuItem onClick={handleFormEx}>Exercise</MenuItem>
-                <MenuItem onClick={handleFormClassEx}>Exam Exercise</MenuItem>   
+                {/* <MenuItem onClick={handleFormClassEx}>Exam Exercise</MenuItem>    */}
             </Menu>
           </div>
           <div className="main__announcements">
@@ -101,20 +101,22 @@ const ClassExercise = (props) => {
                               {... provided.draggableProps} 
                               {...provided.dragHandleProps}>
                                 <div className="assign__form assign_btn"><Link to={"/assign/" + assign.id} className="assign__form"><Assignment/><span>&nbsp;{assign.assignmentTitle}</span></Link>
-                                  <div className="form_btn_add">
-                                    <Add aria-controls="fade-menu" aria-haspopup="true" onClick={handleClickButton}></Add>
-                                    <Menu
-                                      id="fade-menu"
-                                      anchorEl={anchorEl2}
-                                      keepMounted
-                                      open={Boolean(anchorEl2)}
-                                      onClose={handleClose2}
-                                      TransitionComponent={Fade}
-                                    >
-                                      <MenuItem onClick={handleFormDelete}>Delete</MenuItem>
-                                      <MenuItem onClick={handleClose2}>Change</MenuItem>
-                                    </Menu>
-                                  </div>
+                                  {user.roles[0]==="ROLE_TEACHER" &&
+                                    <div className="form_btn_add">
+                                      <Add aria-controls="fade-menu" aria-haspopup="true" onClick={handleClickButton}></Add>
+                                      <Menu
+                                        id="fade-menu"
+                                        anchorEl={anchorEl2}
+                                        keepMounted
+                                        open={Boolean(anchorEl2)}
+                                        onClose={handleClose2}
+                                        TransitionComponent={Fade}
+                                      >
+                                        <MenuItem onClick={handleFormDelete}>Delete</MenuItem>
+                                        {/* <MenuItem onClick={handleClose2}>Change</MenuItem> */}
+                                      </Menu>
+                                    </div>
+                                  }
                                   <FormConfirmDelete 
                                     assign_id ={assign.id} 
                                     class_id = {props.items.id}/>

@@ -59,7 +59,7 @@ const Register = ({handleChange}) => {
                 type="text"
                 className="login__input"
                 name = "username"
-                helperText={<ErrorMessage name="username"/>}
+                helperText={<ErrorMessage name="username" className="error"/>}
                 />
                 <Field
                 as={TextField}
@@ -67,7 +67,7 @@ const Register = ({handleChange}) => {
                 type="text"
                 className="login__input"
                 name = "name"
-                helperText={<ErrorMessage name="name"/>}
+                helperText={<ErrorMessage name="name" className="error"/>}
                 />
                 <Field
                 as={TextField}
@@ -75,7 +75,7 @@ const Register = ({handleChange}) => {
                 type="text"
                 className="login__input"
                 name = "email"
-                helperText={<ErrorMessage name="email"/>}
+                helperText={<ErrorMessage name="email" className="error"/>}
                 />
                 <Field
                 as={TextField}
@@ -84,7 +84,7 @@ const Register = ({handleChange}) => {
                 name = "password"
                 autoComplete="current-password"
                 className="login__input"
-                helperText={<ErrorMessage name="password"/>}
+                helperText={<ErrorMessage name="password" className="error"/>}
                 />
                 <Field
                 as={TextField}
@@ -93,7 +93,7 @@ const Register = ({handleChange}) => {
                 name = "confirmpassword"
                 autoComplete="current-password"
                 className="login__input"
-                helperText={<ErrorMessage name="password"/>}
+                helperText={<ErrorMessage name="password" className="error"/>}
                 />
                 <RadioGroup  className="checkbox d-flex" value={value} onChange={handleValue}>
                   <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />

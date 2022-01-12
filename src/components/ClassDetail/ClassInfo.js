@@ -6,6 +6,7 @@ import "./ClassInfo.css";
 import HeaderClass from "../Header/HeaderClass";
 
 const ClassInfo = (props) => {
+  const user = JSON.parse(localStorage.getItem("user") || "[]");
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClose = () => setAnchorEl(null);
@@ -20,6 +21,7 @@ const ClassInfo = (props) => {
     handleClose();
     setInvitePeopleDialog(true);
   };
+  console.log(user.roles[0])
   return (
     <div className="main">
       <HeaderClass items={props.items} />
@@ -45,7 +47,7 @@ const ClassInfo = (props) => {
             </div>
           </div>
         </div>
-        <div className="username">
+        <div className="main__announce">
           <div className="main__status">
             <h3>Classroom Management</h3>
             <div className="main__menu">
@@ -56,16 +58,20 @@ const ClassInfo = (props) => {
               >
                 People
               </div>
-              <div
-                type="button"
-                className="main__menuItem"
-                onClick={handleInvitePeople}
-              >
-                Invite people
+              <div>
+                {user.roles[0]==="ROLE_TEACHER" &&
+                  <div
+                    type="button"
+                    className="main__menuItem"
+                    onClick={handleInvitePeople}
+                  >
+                    Invite people
+                  </div>
+                }
               </div>
             </div>
           </div>
-          <div className="usernamements">
+          <div className="">
             <div className="main__announcementsWrapper">
               <div className="main__ancContent">
                 <div>

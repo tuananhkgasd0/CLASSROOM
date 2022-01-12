@@ -46,6 +46,7 @@ const ChangeProfile = () => {
         console.log(values);
         userAPI.changeInfo(user.id, values);
         setErrorMessage("Change profile successfully");
+        window.location.reload(false);
     }
     return(
         <div>

@@ -63,7 +63,7 @@
     margin-bottom: 0.5rem;
 }
 .invite__input{
-    width: 100%;
+    width: 100%!important;
 }
 .invite__loginInfo {
     align-items: center;
