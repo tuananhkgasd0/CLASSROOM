@@ -7,15 +7,16 @@ import * as Yup from 'yup';
 import classroomAPI from '../../api/classroomAPI';
 
 const VerifyClass = () => {
-  const initialValues={verifycode: ''};
+  const initialValues={verifyCode: ''};
   const [errorMessage, setErrorMessage] = React.useState("");
   const validationSchema = Yup.object().shape({
-    verifycode: Yup.string().required("Required"),
+    verifyCode: Yup.string().required("Required"),
   });
 
-  const onSubmit=(values)=>{
-    classroomAPI.joinClassByCode(values);
-    setErrorMessage("Activate successfully");
+  async function onSubmit(values){
+    const response = await classroomAPI.joinClassByCode(values);
+    console.log(response)
+    setErrorMessage(response.errMessage);
   };
   return (
     <div className="login">
@@ -29,7 +30,7 @@ const VerifyClass = () => {
                 label="Verify Code"
                 type="text"
                 className="login__input"
-                name = "verifycode"
+                name = "verifyCode"
                 multiline
                 helperText={<ErrorMessage name="username"/>}
                 />

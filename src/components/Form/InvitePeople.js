@@ -11,15 +11,16 @@ const Transition = React.forwardRef(function Transition(props,ref){
 });
 
 const InvitePeople = (props) => {
+    const [errorMessage, setErrorMessage] = React.useState("");
     const initialValues={
         c_id: props.c_id,
         email: '',
     }
     const {invitePeopleDialog,setInvitePeopleDialog} = useLocalContext();
-    const onSubmit=(values)=>{
-        classroomAPI.addUser(values);
-        console.log(values);
-        // window.location.reload(false);
+    async function onSubmit(values){
+        const response = await classroomAPI.addUser(values);
+        console.log(response);
+        setErrorMessage(response.errMessage);
     }
     return(
         <div>
@@ -58,7 +59,8 @@ const InvitePeople = (props) => {
                                     name="email"
                                 >
                                 </Field>
-                            </div>
+                            </div> 
+                            {errorMessage && <div className="mt-2"> {errorMessage} </div>}
                             <div className="invite_btnform">
                                 <Button
                                     className="invite__btn"

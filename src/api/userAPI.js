@@ -120,9 +120,13 @@ const userAPI = {
         return(axiosClient.post(
             url,
             {
-                activationToken: param.verifycode,
+                activationToken: param.verifyCode,
             }
-        ));
+        )).catch(error => {
+            return error;
+          }).then(response => {
+            return response;
+        });
     },
     getAdminList: () => {
         const url = "/admins";

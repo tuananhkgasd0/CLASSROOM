@@ -4,7 +4,6 @@ import './style.css';
 import Header from '../Header/Header';
 
 const Classes = (props) => {
-  console.log(props)
   return(
       <div className="bg-gray">
           <Header/>

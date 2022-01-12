@@ -58,11 +58,10 @@ const classroomAPI = {
     )
   },
   joinClassByCode: (param) => {
-    console.log(param.verifycode)
     const url = "/addUser/join";
     return axiosClient.post(
       url,{
-        tonken: param.verifycode
+        token: param.verifyCode
       }
     )
   }

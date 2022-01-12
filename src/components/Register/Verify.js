@@ -1,23 +1,24 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {TextField, Button, Radio, RadioGroup } from '@material-ui/core';
+import {TextField, Button} from '@material-ui/core';
 import {Formik,Form, Field,ErrorMessage} from 'formik';
 import './Register.css';
 import * as Yup from 'yup';
 import userApi from '../../api/userAPI';
 
 const Verify = () => {
-  const initialValues={verifycode: ''};
   const [errorMessage, setErrorMessage] = React.useState("");
+  const initialValues={verifyCode: ''};
   const validationSchema = Yup.object().shape({
-    verifycode: Yup.string().required("Required"),
+    verifyCode: Yup.string().required("Required"),
   });
 
-  const onSubmit=(values)=>{
-    console.log(values);
-    userApi.activateAccount(values);
-    setErrorMessage("Activate successfully");
+  async function onSubmit(values){
+    const response = await userApi.activateAccount(values);
+    if(response.msg === undefined)
+      setErrorMessage("Verify Failed")
+    else
+      setErrorMessage(response.msg);
   };
   return (
     <div className="login">
@@ -31,7 +32,7 @@ const Verify = () => {
                 label="Verify Code"
                 type="text"
                 className="login__input"
-                name = "verifycode"
+                name = "verifyCode"
                 multiline
                 helperText={<ErrorMessage name="username"/>}
                 />
