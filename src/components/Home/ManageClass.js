@@ -1,18 +1,13 @@
 import React, {useEffect, useState} from "react";
 import './style.css';
 import HeaderAdmin from '../Header/HeaderAdmin';
-import { useNavigate } from "react-router-dom";
 import userAPI from '../../api/userAPI';
 import {Link} from 'react-router-dom';
+import {Formik,Form, Field,ErrorMessage} from 'formik';
+import {TextField, Button} from '@material-ui/core';
 
 const ManageClass = () => {
-  const user = JSON.parse(localStorage.getItem("user") || "[]");
-  let navigate = useNavigate();
-  console.log(user);
-  if(user.length === 0) {
-    navigate("/");
-    window.location.reload(false);
-  }
+  const initialValues = {text: ''};
 
   const [classList, setClassList] = useState([]);
   useEffect(() => {
@@ -26,6 +21,12 @@ const ManageClass = () => {
     };
     fetchClassList();
   }, []);  
+
+  async function onSubmit(values){
+    const response = await userAPI.searchClass(values.text);
+    setClassList(response.data)
+  };
+
   return(
       <div className="bg-gray">
           <HeaderAdmin/>
@@ -33,6 +34,31 @@ const ManageClass = () => {
             <div className="class__center form_admin">
               <div className="d-flex align-item-center w-100">
                 <h1 className="color-brown">CLASS LIST</h1>
+                <div>
+                <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                  {(props) => (
+                    <Form className="search_form d-flex">
+                      <Field
+                      as={TextField}
+                      label="Search user class"
+                      type="text"
+                      className="search__input"
+                      name = "text"
+                      variant="filled"
+                      helperText={<ErrorMessage name="username"/>}
+                      />
+                      <Button
+                        className="search__btn"
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                      >
+                      Search
+                      </Button>
+                    </Form>          
+                  )}
+                </Formik>
+                </div>
               </div>
               <div className="row mt-2">
                 <div className="column">
@@ -60,7 +86,7 @@ const ManageClass = () => {
                       {classes.teacherName}
                     </div>
                     <div className="column">
-                      <Link to={"/admin/manage/admin/" + classes.id} className="btn_detail">Show Detail</Link>
+                      <Link to={"/admin/manage/class/" + classes.id} className="btn_detail">Show Detail</Link>
                     </div>
                   </div>
               ))}

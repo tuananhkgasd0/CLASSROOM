@@ -28,11 +28,15 @@ const UserDetail = (props) => {
     window.location.reload(false);
   }
   function handleMap() {
-    userAPI.userMapId(props.items.id);
-    window.location.reload(false);
+    const value = {u_id: props.items.id, cmd: 0};
+    console.log(value)
+    userAPI.userMapId(value);
+    // window.location.reload(false);
   }
   function handleUnMap() {
-    userAPI.userUnMapId(props.items.id);
+    const value = {u_id: props.items.id, cmd: 1};
+    console.log(value)
+    userAPI.userMapId(value);
     window.location.reload(false);
   }
 
@@ -47,17 +51,17 @@ const UserDetail = (props) => {
                     <Button className="ml-auto" variant="contained" color="secondary" onClick={BanUser}>Ban User</Button>
                   </div>
                   <h3 className="admin_detail"><b>Id:</b> {user.id}</h3>
-                  <div className="d-flex align-item-center">
-                    <h3 className="admin_detail"><b>Student Id:</b> {user.studentID}</h3>
-                    <div className="btn_form">
-                      <Button variant="contained" color="primary" disabled={user.studentID} onClick={handleMap}>Map</Button>
-                      <Button variant="contained" color="secondary" disabled={!user.studentID} className="ml-2" onClick={handleUnMap}>UnMap</Button>
-                    </div>
-                  </div>
+                  <h3 className="admin_detail"><b>Student Id:</b> {user.studentID}</h3>
                   <h3 className="admin_detail"><b>Username:</b> {user.username}</h3>
                   <h3 className="admin_detail"><b>Full Name:</b> {user.fullName}</h3>
                   <h3 className="admin_detail"><b>DOB:</b> {user.DOB}</h3>
+                  <div className="d-flex align-item-center">
                   <h3 className="admin_detail"><b>Email:</b> {user.email}</h3>
+                    <div className="btn_form ml-auto">
+                      <Button variant="contained" color="primary" disabled={!user.studentID} onClick={handleMap}>Map</Button>
+                      <Button variant="contained" color="secondary" disabled={user.studentID} className="ml-2" onClick={handleUnMap}>UnMap</Button>
+                    </div>
+                  </div>
                   <h3 className="admin_detail"><b>Phone Number:</b> {user.phoneNumber}</h3>
               </div>
           </div>

@@ -1,17 +1,14 @@
 import React, {useEffect, useState} from "react";
 import './style.css';
 import HeaderAdmin from '../Header/HeaderAdmin';
-import { useNavigate } from "react-router-dom";
 import userAPI from '../../api/userAPI';
 import {Link} from 'react-router-dom';
+import {Formik,Form, Field,ErrorMessage} from 'formik';
+import {TextField, Button} from '@material-ui/core';
 
 const ManageAdmin = (props) => {
   const user = JSON.parse(localStorage.getItem("user") || "[]");
-  let navigate = useNavigate();
-  if(user.length === 0) {
-    navigate("/");
-    window.location.reload(false);
-  }
+  const initialValues = {text: ''};
 
   const [adminList, setAdminList] = useState([]);
   useEffect(() => {
@@ -25,6 +22,10 @@ const ManageAdmin = (props) => {
     };
     fetchAdminList();
   }, []);  
+  async function onSubmit(values){
+    const response = await userAPI.searchAdmin(values.text);
+    setAdminList(response.data)
+  };
   return(
       <div className="bg-gray">
           <HeaderAdmin/>
@@ -32,6 +33,31 @@ const ManageAdmin = (props) => {
             <div className="class__center form_admin">
               <div className="d-flex align-item-center w-100">
                 <h1 className="color-brown">ADMIN LIST</h1>
+                <div>
+                <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                  {(props) => (
+                    <Form className="search_form d-flex">
+                      <Field
+                      as={TextField}
+                      label="Search name/email"
+                      type="text"
+                      className="search__input"
+                      name = "text"
+                      variant="filled"
+                      helperText={<ErrorMessage name="username"/>}
+                      />
+                      <Button
+                        className="search__btn"
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                      >
+                      Search
+                      </Button>
+                    </Form>          
+                  )}
+                </Formik>
+                </div>
                 <Link to={`/admin/register`} className="ml-auto create_admin">Create admin</Link>
               </div>
               <div className="row mt-2">

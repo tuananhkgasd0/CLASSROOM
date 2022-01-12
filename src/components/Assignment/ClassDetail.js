@@ -30,8 +30,6 @@ const ClassDetail = (props) => {
                   <h3 className="admin_detail"><b>Teacher Name:</b> {classes.teacherName}</h3>
                   <h3 className="admin_detail"><b>Number of Student:</b> {classes.numberOfStudent}</h3>
                   <h3 className="admin_detail"><b>Banner:</b> {classes.banner}</h3>
-                  <h3 className="admin_detail"><b>Create At:</b> {classes.createAt}</h3>
-                  <h3 className="admin_detail"><b>Update At:</b> {classes.updateAt}</h3>
               </div>
           </div>
       </div>

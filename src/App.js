@@ -1,5 +1,5 @@
 import React, {useState, useEffect}  from "react";
-import { Login,UserDetail,ClassInfo,Register, Classes,ClassExercise,Grade, Assign,LoginAdmin,RegisterAdmin, Verify,ManageAdmin,ManageUser,ManageClass, AdminDetail} from "./components";
+import { Login,UserDetail,ClassDetail,ClassInfo,Register, Classes,ClassExercise,Grade, Assign,LoginAdmin,RegisterAdmin, Verify,ManageAdmin,ManageUser,ManageClass, AdminDetail} from "./components";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import classroomAPI from "./api/classroomAPI";
 import assignmentAPI from "./api/assignmentAPI";
@@ -101,9 +101,9 @@ function App() {
             <div><UserDetail items={user}/></div>
           }></Route>
         )}
-        {classList.map((classes) => 
-          <Route path={"/admin/manage/class/" + classes.id} element={ 
-            <div><UserDetail items={classes}/></div>
+        {classList.map((classAdmin) => 
+          <Route path={"/admin/manage/class/" + classAdmin.id} element={ 
+            <div><ClassDetail items={classAdmin}/></div>
           }></Route>
         )}
         {classesList.map((classroom) => 

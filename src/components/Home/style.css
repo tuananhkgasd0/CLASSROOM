@@ -24,3 +24,6 @@ height: 100vh;}
 .w-100{width: 100%!important}
 .color-brown{color: #344e41}
 .bg-gray{background-color: #ffe0b2!important;}
+.search__input{width: 120%!important}
+.search_form{align-items: center; margin-left: 5%!important; width: 150%}
+.search__btn{margin-left: 2%!important}

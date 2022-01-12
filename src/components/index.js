@@ -22,4 +22,5 @@ export {default as FormConfirmDelete} from './Form/FormConfirmDelete';
 export {default as ChangeProfile} from './ChangeProfile/ChangeProfile'; 
 export {default as AdminDetail} from './Assignment/AdminDetail'; 
 export {default as UserDetail} from './Assignment/UserDetail'; 
-export {default as Assign} from './Assignment/Assign'; 
+export {default as ClassDetail} from './Assignment/ClassDetail';
+export {default as Assign} from './Assignment/Assign';

@@ -1,18 +1,14 @@
 import React, {useEffect, useState} from "react";
 import './style.css';
 import HeaderAdmin from '../Header/HeaderAdmin';
-import { useNavigate } from "react-router-dom";
 import userAPI from '../../api/userAPI';
 import {Link} from 'react-router-dom';
+import {Formik,Form, Field,ErrorMessage} from 'formik';
+import {TextField, Button} from '@material-ui/core';
 
 const ManageUser = () => {
+  const initialValues = {text: ''};
   const user = JSON.parse(localStorage.getItem("user") || "[]");
-  let navigate = useNavigate();
-  console.log(user);
-  if(user.length === 0) {
-    navigate("/");
-    window.location.reload(false);
-  }
 
   const [userList, setUserList] = useState([]);
   useEffect(() => {
@@ -26,13 +22,43 @@ const ManageUser = () => {
     };
     fetchUserList();
   }, []);  
+
+  async function onSubmit(values){
+    const response = await userAPI.searchUser(values.text);
+    setUserList(response.data)
+  };
+
   return(
     <div className="bg-gray">
     <HeaderAdmin/>
     <div className="class__root mt-2">
       <div className="class__center form_admin">
         <div className="d-flex align-item-center w-100">
-          <h1 className="color-brown">USER LIST</h1>
+          <h1 className="color-brown">USER LIST</h1><div>
+            <Formik initialValues={initialValues} onSubmit={onSubmit}>
+              {(props) => (
+                <Form className="search_form d-flex">
+                  <Field
+                  as={TextField}
+                  label="Search name/email"
+                  type="text"
+                  className="search__input"
+                  name = "text"
+                  variant="filled"
+                  helperText={<ErrorMessage name="username"/>}
+                  />
+                  <Button
+                    className="search__btn"
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                  >
+                  Search
+                  </Button>
+                </Form>          
+              )}
+            </Formik>
+            </div>
         </div>
         <div className="row mt-2">
           <div className="column">

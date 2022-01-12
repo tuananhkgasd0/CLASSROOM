@@ -120,7 +120,7 @@ const userAPI = {
         return(axiosClient.post(
             url,
             {
-                activationToken: param.verifycode
+                activationToken: param.verifycode,
             }
         ));
     },
@@ -150,7 +150,34 @@ const userAPI = {
             headers: authHeader()
             }
         ))
-    },  
+    }, 
+    searchUser: (param) => {
+        const url = "/admins/users/search?term=" + param;
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    },    
+    searchAdmin: (param) => {
+        const url = "/admins/search?term=" + param;
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    },   
+    searchClass: (param) => {
+        const url = "/admins/classes/search?term=" + param;
+        return(axiosClient.get(
+            url,
+            {
+            headers: authHeader()
+            }
+        ))
+    },   
     getUserDetail: (param) => {
         const url = "admins/users/" + param;
         return(axiosClient.get(
@@ -170,7 +197,7 @@ const userAPI = {
         ))
     },
     getClassDetail: (param) => {
-        const url = "/admins/classes" + param;
+        const url = "/admins/classes/" + param;
         return(axiosClient.get(
             url,
             {
@@ -183,12 +210,9 @@ const userAPI = {
         return(axiosClient.delete(url, {headers: authHeader()}))
     }, 
     userMapId: (param) => {
-        const url = "/admins/users/" + param;
-        return(axiosClient.post(url, {headers: authHeader()}))
+        console.log(param.u_id + "/" + param.cmd);
+        const url = "/admins/users/" + param.u_id;
+        return(axiosClient.post(url,{cmd: param.cmd}, {headers: authHeader()}))
     }, 
-    userUnMapId: (param) => {
-        const url = "/admins/users/" + param;
-        return(axiosClient.post(url, {headers: authHeader()}))
-    }
 }
 export default userAPI;
