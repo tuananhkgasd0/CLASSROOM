@@ -17,9 +17,9 @@ const JoinClass = () => {
         u_id:user.id,
     }
     const onSubmit=(values)=>{
-        classroomAPI.joinClassByCode(values);
         console.log(values);
-        window.location.reload(false);
+        classroomAPI.joinClassByCode(values);
+        // window.location.reload(false);
     }
     return(
         <div>
