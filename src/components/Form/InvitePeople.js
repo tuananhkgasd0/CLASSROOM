@@ -13,13 +13,13 @@ const Transition = React.forwardRef(function Transition(props,ref){
 const InvitePeople = (props) => {
     const initialValues={
         c_id: props.c_id,
-        u_id: '',
+        email: '',
     }
     const {invitePeopleDialog,setInvitePeopleDialog} = useLocalContext();
     const onSubmit=(values)=>{
-        classroomAPI.inviteUser(values);
+        classroomAPI.addUser(values);
         console.log(values);
-        window.location.reload(false);
+        // window.location.reload(false);
     }
     return(
         <div>
@@ -55,7 +55,7 @@ const InvitePeople = (props) => {
                                     label="Email"
                                     variant="outlined"
                                     className="invite__input"
-                                    name="username"
+                                    name="email"
                                 >
                                 </Field>
                             </div>

@@ -31,7 +31,7 @@ const UserDetail = (props) => {
     const value = {u_id: props.items.id, cmd: 0};
     console.log(value)
     userAPI.userMapId(value);
-    // window.location.reload(false);
+    window.location.reload(false);
   }
   function handleUnMap() {
     const value = {u_id: props.items.id, cmd: 1};
@@ -58,8 +58,8 @@ const UserDetail = (props) => {
                   <div className="d-flex align-item-center">
                   <h3 className="admin_detail"><b>Email:</b> {user.email}</h3>
                     <div className="btn_form ml-auto">
-                      <Button variant="contained" color="primary" disabled={!user.studentID} onClick={handleMap}>Map</Button>
-                      <Button variant="contained" color="secondary" disabled={user.studentID} className="ml-2" onClick={handleUnMap}>UnMap</Button>
+                      <Button variant="contained" color="primary" disabled={user.isMapped===0} onClick={handleMap}>Map</Button>
+                      <Button variant="contained" color="secondary" disabled={user.isMapped===1} className="ml-2" onClick={handleUnMap}>UnMap</Button>
                     </div>
                   </div>
                   <h3 className="admin_detail"><b>Phone Number:</b> {user.phoneNumber}</h3>

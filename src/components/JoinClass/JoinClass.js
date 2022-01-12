@@ -18,8 +18,7 @@ const JoinClass = () => {
     }
     const onSubmit=(values)=>{
         classroomAPI.joinClassByCode(values);
-        console.log(values);
-        window.location.reload(false);
+        // window.location.reload(false);
     }
     return(
         <div>

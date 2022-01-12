@@ -42,8 +42,8 @@ const classroomAPI = {
     return axiosClient.post(
       url,
       {
-        classID: param.c_id,
-        userID: param.u_id
+        classId: param.c_id,
+        email: param.email
       },
       {
       headers: authHeader()
@@ -51,18 +51,21 @@ const classroomAPI = {
     )
   },
   inviteUser: (param) => {
-    const url = "/addUser/join/?classid="+param.c_id + "&username=" + param.username;
+    const url = "/addUser/join";
     return axiosClient.post(
       url,{
+        token: param
+      },{
       headers: authHeader()
       }
     )
   },
   joinClassByCode: (param) => {
-    const url = "/classes/join-class?clsCode=" + param.c_code + "&userId=" + param.u_id;
+    console.log(param.verifycode)
+    const url = "/addUser/join";
     return axiosClient.post(
       url,{
-      headers: authHeader()
+        tonken: param.verifycode
       }
     )
   }

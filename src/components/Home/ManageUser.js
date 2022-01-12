@@ -15,7 +15,7 @@ const ManageUser = () => {
     const fetchUserList = async () => {
       try {
         const response = await userAPI.getUserList();
-        setUserList(response);
+        setUserList(response.data);
       } catch (error) {
         console.log("Fail to fetch", error);
       }

@@ -20,7 +20,6 @@ const ClassInfo = (props) => {
     handleClose();
     setInvitePeopleDialog(true);
   };
-  console.log(props);
   return (
     <div className="main">
       <HeaderClass items={props.items} />
@@ -46,7 +45,7 @@ const ClassInfo = (props) => {
             </div>
           </div>
         </div>
-        <div className="main__announce">
+        <div className="username">
           <div className="main__status">
             <h3>Classroom Management</h3>
             <div className="main__menu">
@@ -66,7 +65,7 @@ const ClassInfo = (props) => {
               </div>
             </div>
           </div>
-          <div className="main__announcements">
+          <div className="usernamements">
             <div className="main__announcementsWrapper">
               <div className="main__ancContent">
                 <div>

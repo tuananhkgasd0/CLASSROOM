@@ -143,7 +143,7 @@ const userAPI = {
         ))
     }, 
     getUserList: () => {
-        const url = "/users";
+        const url = "/admins/users";
         return(axiosClient.get(
             url,
             {

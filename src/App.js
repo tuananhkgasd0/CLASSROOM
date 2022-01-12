@@ -1,5 +1,5 @@
 import React, {useState, useEffect}  from "react";
-import { Login,UserDetail,ClassDetail,ClassInfo,Register, Classes,ClassExercise,Grade, Assign,LoginAdmin,RegisterAdmin, Verify,ManageAdmin,ManageUser,ManageClass, AdminDetail} from "./components";
+import { Login,UserDetail,VerifyClass,ClassDetail,ClassInfo,Register, Classes,ClassExercise,Grade, Assign,LoginAdmin,RegisterAdmin, Verify,ManageAdmin,ManageUser,ManageClass, AdminDetail} from "./components";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import classroomAPI from "./api/classroomAPI";
 import assignmentAPI from "./api/assignmentAPI";
@@ -30,7 +30,7 @@ function App() {
     const fetchClassesList = async () => {
       try {
         const userResponse = await userAPI.getUserList();
-        setUserList(userResponse);
+        setUserList(userResponse.data);
         }
       catch (error) {
         console.log("Fail to fetch", error);
@@ -89,6 +89,7 @@ function App() {
         <Route path='/admin/manage/user' element={<ManageUser/>}/> 
         <Route path='/admin/manage/class' element={<ManageClass/>}/> 
         <Route path='/verify' element={<Verify/>}/> 
+        <Route path='/verify/class' element={<VerifyClass/>}/> 
         <Route path="/admin/register" element={<RegisterAdmin/>}/> 
 
         {adminList.map((admin) => 
