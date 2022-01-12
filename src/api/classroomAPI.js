@@ -1,41 +1,38 @@
-import axiosClient from "../axiosClient"
+import axiosClient from "../axiosClient";
 import authHeader from "./auth-header";
 
 const classroomAPI = {
   getAllClasses: (param) => {
     const url = "/classes/user/" + param;
-    return axiosClient.get(url, 
-      {
-      headers: authHeader()
-      })
+    return axiosClient.get(url, {
+      headers: authHeader(),
+    });
   },
   createClass: (data) => {
     const url = "/classes";
-    return axiosClient.post(url, {
-      className: data.className,
-      numberOfStudent: data.numberOfStudent,
-      banner: data.banner,
-    },{
-      headers: authHeader()
-      })
+    return axiosClient.post(
+      url,
+      {
+        className: data.className,
+        numberOfStudent: data.numberOfStudent,
+        banner: data.banner,
+      },
+      {
+        headers: authHeader(),
+      }
+    );
   },
   getStudent: (param) => {
     const url = "/student/?c_id=" + param;
-    return(axiosClient.get(
-      url, 
-      {
-        headers: authHeader()
-      }
-    ))
+    return axiosClient.get(url, {
+      headers: authHeader(),
+    });
   },
   getTeacher: (param) => {
     const url = "/teacher/?c_id=" + param;
-    return axiosClient.get(
-      url, 
-      {
-      headers: authHeader()
-      }
-    ) 
+    return axiosClient.get(url, {
+      headers: authHeader(),
+    });
   },
   addUser: (param) => {
     const url = "/addUser";
@@ -46,9 +43,9 @@ const classroomAPI = {
         email: param.email
       },
       {
-      headers: authHeader()
+        headers: authHeader(),
       }
-    )
+    );
   },
   inviteUser: (param) => {
     const url = "/addUser/join";

@@ -1,4 +1,4 @@
-import axiosClient from "../axiosClient"
+import axiosClient from "../axiosClient";
 import authHeader from "./auth-header";
 const userAPI = {
     signUp: (param,checked) =>{

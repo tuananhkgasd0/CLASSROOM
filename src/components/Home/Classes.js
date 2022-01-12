@@ -2,7 +2,6 @@ import React from "react";
 import {JoinedClasses} from ".."
 import './style.css';
 import Header from '../Header/Header';
-import { useNavigate } from "react-router-dom";
 
 const Classes = (props) => {
   console.log(props)
