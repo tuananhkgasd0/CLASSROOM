@@ -51,12 +51,11 @@ const assignmentAPI = {
             })
         )
     },
-    deleteAssignment: (req, res, param) =>{
+    deleteAssignment: (req, res) =>{
         const url = "/assignments?c_id=" + req + "&id=" + res;
         return (
             axiosClient.delete(
                 url,
-                {param},
                 {
                 headers: authHeader()
                 }

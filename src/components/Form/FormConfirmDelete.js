@@ -12,7 +12,7 @@ const FormConfirmDelete = (props) => {
         console.log(props.assign_id);
         assignmentAPI.deleteAssignment(props.class_id, props.assign_id);
         setFormConfirmDeleteDialog(false)
-        window.location.reload(false);
+        // window.location.reload(false);
     }
     return(
         <div>
