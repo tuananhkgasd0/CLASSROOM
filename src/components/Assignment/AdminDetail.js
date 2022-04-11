@@ -1,8 +1,7 @@
-import React, {useEffect} from "react";
-import "./Assign.css";
-import HeaderAdmin from "../Header/HeaderAdmin";
+import React, { useEffect } from "react";
 import userAPI from '../../api/userAPI';
-import {Button} from "@material-ui/core";
+import HeaderAdmin from "../Header/HeaderAdmin";
+import "./Assign.css";
 const AdminDetail = (props) => {
   const [admin, setAdmin] = React.useState({});
   useEffect(() => {

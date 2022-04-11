@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import "./Assign.css";
-import HeaderAdmin from "../Header/HeaderAdmin";
-import userAPI from "../../api/userAPI";
 import { Button } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import userAPI from "../../api/userAPI";
+import HeaderAdmin from "../Header/HeaderAdmin";
+import "./Assign.css";
 
 const UserDetail = (props) => {
   let navigate = useNavigate();
   const [user, setUser] = useState({});
-  const [isMapped, setIsMapped] = useState(false);
+  const [, setIsMapped] = useState(false);
 
   useEffect(() => {
     const fetchAssignList = async () => {

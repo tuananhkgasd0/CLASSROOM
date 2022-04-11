@@ -1,11 +1,10 @@
+import { Button, TextField } from '@material-ui/core';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as React from 'react';
-import {Link} from 'react-router-dom';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {TextField, Button, Radio, RadioGroup } from '@material-ui/core';
-import {Formik,Form, Field,ErrorMessage} from 'formik';
-import './Register.css';
+import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import userApi from '../../api/userAPI';
+import './Register.css';
 
 const RegisterAdmin = ({handleChange}) => {
   const initialValues={
