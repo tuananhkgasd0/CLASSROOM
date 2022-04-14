@@ -30,6 +30,7 @@ const AdminDetail = (props) => {
                   <h3 className="admin_detail"><b>DOB:</b> {admin.DOB}</h3>
                   <h3 className="admin_detail"><b>Email:</b> {admin.email}</h3>
                   <h3 className="admin_detail"><b>Phone Number:</b> {admin.phoneNumber}</h3>
+                  <h1>asd</h1>
               </div>
           </div>
       </div>
