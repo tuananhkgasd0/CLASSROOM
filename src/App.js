@@ -79,7 +79,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="CLASSROOM">
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/> 
