@@ -79,7 +79,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="CLASSROOM">
+    <Router basename="/CLASSROOM">
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/> 
@@ -88,7 +88,7 @@ function App() {
         <Route path='/admin/manage/admin' element={<ManageAdmin/>}/> 
         <Route path='/admin/manage/user' element={<ManageUser/>}/> 
         <Route path='/admin/manage/class' element={<ManageClass/>}/> 
-        <Route path='/verify' element={<Verify/>}/> 
+        <Route path='/verify' element={<Verify/>}/> .
         <Route path='/verify/class' element={<VerifyClass/>}/> 
         <Route path="/admin/register" element={<RegisterAdmin/>}/> 
 
