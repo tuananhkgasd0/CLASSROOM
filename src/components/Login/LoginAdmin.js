@@ -1,11 +1,10 @@
-import React, {useEffect} from "react";
-import { Link } from "react-router-dom";
-import { TextField, Button } from "@material-ui/core";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import "./Login.css";
+import { Button, TextField } from "@material-ui/core";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import userApi from "../../api/userAPI";
-import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const LoginAdmin = ({ isAuth }) => {
   const initialValues = {

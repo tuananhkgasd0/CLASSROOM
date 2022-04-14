@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
-import { useLocalContext } from "../../context/context";
-import {Dialog, Slide,Button,TextField, Avatar} from "@material-ui/core";
-import {Close} from "@material-ui/icons";
-import "./ChangeProfile.css";
+import { Avatar, Button, Dialog, Slide, TextField } from "@material-ui/core";
+import { Close } from "@material-ui/icons";
+import { Field, Form, Formik } from 'formik';
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userAPI from "../../api/userAPI";
-import {Formik,Form, Field} from 'formik';
+import { useLocalContext } from "../../context/context";
+import "./ChangeProfile.css";
 
 const Transition = React.forwardRef(function Transition(props,ref){
     return <Slide direction="up" ref={ref}{...props}/>

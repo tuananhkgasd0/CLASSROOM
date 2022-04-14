@@ -1,9 +1,9 @@
-import React, {useState, useEffect}  from "react";
-import { Login,UserDetail,VerifyClass,ClassDetail,ClassInfo,Register, Classes,ClassExercise,Grade, Assign,LoginAdmin,RegisterAdmin, Verify,ManageAdmin,ManageUser,ManageClass, AdminDetail} from "./components";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import classroomAPI from "./api/classroomAPI";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import assignmentAPI from "./api/assignmentAPI";
+import classroomAPI from "./api/classroomAPI";
 import userAPI from "./api/userAPI";
+import { AdminDetail, Assign, ClassDetail, Classes, ClassExercise, ClassInfo, Grade, Login, LoginAdmin, ManageAdmin, ManageClass, ManageUser, Register, RegisterAdmin, UserDetail, Verify, VerifyClass } from "./components";
 function App() {
   const [classesList, setClassesList] = useState([]);
   const [assignList, setAssignList] = useState([]);
