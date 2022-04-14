@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.54e3817e.chunk.css",
-    "main.js": "/static/js/main.6501ca52.chunk.js",
-    "main.js.map": "/static/js/main.6501ca52.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.af46effd.js",
-    "runtime-main.js.map": "/static/js/runtime-main.af46effd.js.map",
-    "static/js/2.2bdf1ace.chunk.js": "/static/js/2.2bdf1ace.chunk.js",
-    "static/js/2.2bdf1ace.chunk.js.map": "/static/js/2.2bdf1ace.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.54e3817e.chunk.css.map": "/static/css/main.54e3817e.chunk.css.map",
-    "static/js/2.2bdf1ace.chunk.js.LICENSE.txt": "/static/js/2.2bdf1ace.chunk.js.LICENSE.txt",
-    "static/media/Login.css": "/static/media/bg-login.ac12a8bc.jpeg",
-    "static/media/logo.0505bb4b.png": "/static/media/logo.0505bb4b.png"
+    "main.css": "/CLASSROOM/static/css/main.93c2d57d.chunk.css",
+    "main.js": "/CLASSROOM/static/js/main.6501ca52.chunk.js",
+    "main.js.map": "/CLASSROOM/static/js/main.6501ca52.chunk.js.map",
+    "runtime-main.js": "/CLASSROOM/static/js/runtime-main.f4dbdb17.js",
+    "runtime-main.js.map": "/CLASSROOM/static/js/runtime-main.f4dbdb17.js.map",
+    "static/js/2.2bdf1ace.chunk.js": "/CLASSROOM/static/js/2.2bdf1ace.chunk.js",
+    "static/js/2.2bdf1ace.chunk.js.map": "/CLASSROOM/static/js/2.2bdf1ace.chunk.js.map",
+    "index.html": "/CLASSROOM/index.html",
+    "static/css/main.93c2d57d.chunk.css.map": "/CLASSROOM/static/css/main.93c2d57d.chunk.css.map",
+    "static/js/2.2bdf1ace.chunk.js.LICENSE.txt": "/CLASSROOM/static/js/2.2bdf1ace.chunk.js.LICENSE.txt",
+    "static/media/Login.css": "/CLASSROOM/static/media/bg-login.ac12a8bc.jpeg",
+    "static/media/logo.0505bb4b.png": "/CLASSROOM/static/media/logo.0505bb4b.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.af46effd.js",
+    "static/js/runtime-main.f4dbdb17.js",
     "static/js/2.2bdf1ace.chunk.js",
-    "static/css/main.54e3817e.chunk.css",
+    "static/css/main.93c2d57d.chunk.css",
     "static/js/main.6501ca52.chunk.js"
   ]
 }
