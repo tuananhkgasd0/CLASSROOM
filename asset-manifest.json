@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/CLASSROOM/static/css/main.93c2d57d.chunk.css",
-    "main.js": "/CLASSROOM/static/js/main.6501ca52.chunk.js",
-    "main.js.map": "/CLASSROOM/static/js/main.6501ca52.chunk.js.map",
+    "main.js": "/CLASSROOM/static/js/main.de7b6af6.chunk.js",
+    "main.js.map": "/CLASSROOM/static/js/main.de7b6af6.chunk.js.map",
     "runtime-main.js": "/CLASSROOM/static/js/runtime-main.f4dbdb17.js",
     "runtime-main.js.map": "/CLASSROOM/static/js/runtime-main.f4dbdb17.js.map",
     "static/js/2.2bdf1ace.chunk.js": "/CLASSROOM/static/js/2.2bdf1ace.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.f4dbdb17.js",
     "static/js/2.2bdf1ace.chunk.js",
     "static/css/main.93c2d57d.chunk.css",
-    "static/js/main.6501ca52.chunk.js"
+    "static/js/main.de7b6af6.chunk.js"
   ]
 }
