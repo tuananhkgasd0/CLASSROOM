@@ -38,7 +38,7 @@ jobs:
       - name: Install Nodejs
         run: npm i --legacy-peer-deps
       - name: Run Build
-        run: npm run build
+        run: CI=false npm run build
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
