@@ -12,6 +12,13 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
+job:
+  stage: test
+  variables: 
+    ErrorActionPreference: stop 
+  script:
+  - NONEXISTANTCMDLET
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
