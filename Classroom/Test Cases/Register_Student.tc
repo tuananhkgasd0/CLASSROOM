@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Register_Student</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>149ffcbe-b45f-41bb-9ee7-d72c2e9cc0ff</testCaseGuid>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>a55cfa01-d7ff-42e9-b651-1a4d17b30f01</id>
+      <masked>false</masked>
+      <name>username</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>25a45800-53d2-4f20-a14e-dbe1a234b1b9</id>
+      <masked>false</masked>
+      <name>name</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>ef3cb90d-6edb-46c7-b402-868be9118fa6</id>
+      <masked>false</masked>
+      <name>email</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>7d9391c7-79e5-40fb-8a84-1e37cc67e4a1</id>
+      <masked>false</masked>
+      <name>password</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>648a595d-3938-445f-9a51-ba01310a2f90</id>
+      <masked>false</masked>
+      <name>password_confirm</name>
+   </variable>
+</TestCaseEntity>

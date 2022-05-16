@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSuiteEntity>
+   <description></description>
+   <name>RegisTeacherMultiData</name>
+   <tag></tag>
+   <isRerun>false</isRerun>
+   <mailRecipient></mailRecipient>
+   <numberOfRerun>0</numberOfRerun>
+   <pageLoadTimeout>30</pageLoadTimeout>
+   <pageLoadTimeoutDefault>true</pageLoadTimeoutDefault>
+   <rerunFailedTestCasesOnly>false</rerunFailedTestCasesOnly>
+   <rerunImmediately>false</rerunImmediately>
+   <testSuiteGuid>57dc5150-3346-423e-a7a3-570fc26ecb16</testSuiteGuid>
+   <testCaseLink>
+      <guid>17a41c91-dc75-47ff-8035-00ed4f39e77e</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Register_Teacher</testCaseId>
+      <testDataLink>
+         <combinationType>ONE</combinationType>
+         <id>1dee43e7-d61d-42e0-b158-71c8abfb20a0</id>
+         <iterationEntity>
+            <iterationType>ALL</iterationType>
+            <value></value>
+         </iterationEntity>
+         <testDataId>Data Files/RegisTeacherData</testDataId>
+      </testDataLink>
+      <variableLink>
+         <testDataLinkId>1dee43e7-d61d-42e0-b158-71c8abfb20a0</testDataLinkId>
+         <type>DATA_COLUMN</type>
+         <value>username</value>
+         <variableId>82c943ee-3637-4b84-adac-56a211d04b6d</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId>1dee43e7-d61d-42e0-b158-71c8abfb20a0</testDataLinkId>
+         <type>DATA_COLUMN</type>
+         <value>name</value>
+         <variableId>d1b57840-ec59-4ad9-9ec9-70b5394cc456</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId>1dee43e7-d61d-42e0-b158-71c8abfb20a0</testDataLinkId>
+         <type>DATA_COLUMN</type>
+         <value>email</value>
+         <variableId>59a3a2c1-d49a-4696-8913-a45adeb7341f</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId>1dee43e7-d61d-42e0-b158-71c8abfb20a0</testDataLinkId>
+         <type>DATA_COLUMN</type>
+         <value>password</value>
+         <variableId>0390b4be-6ef5-4c64-b129-5a1cbd0bf0cb</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId>1dee43e7-d61d-42e0-b158-71c8abfb20a0</testDataLinkId>
+         <type>DATA_COLUMN</type>
+         <value>password_confirm</value>
+         <variableId>adbffab1-e16b-48eb-9c27-9d7bf925e6e0</variableId>
+      </variableLink>
+   </testCaseLink>
+</TestSuiteEntity>
