@@ -38,7 +38,7 @@ jobs:
       - name: Install Nodejs
         run: npm install --no-optional
       - name: Run Build
-        run: CI=false npm run build
+        run: npm run build
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
