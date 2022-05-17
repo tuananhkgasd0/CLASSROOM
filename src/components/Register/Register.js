@@ -1,11 +1,11 @@
-import * as React from 'react';
-import {Link} from 'react-router-dom';
+import { Button, Radio, RadioGroup, TextField } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {TextField, Button, Radio, RadioGroup } from '@material-ui/core';
-import {Formik,Form, Field,ErrorMessage} from 'formik';
-import './Register.css';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import userApi from '../../api/userAPI';
+import './Register.css';
 
 const Register = ({handleChange}) => {
   const initialValues={
@@ -95,7 +95,7 @@ const Register = ({handleChange}) => {
                 className="login__input"
                 helperText={<ErrorMessage name="password" className="error"/>}
                 />
-                <RadioGroup  className="checkbox d-flex" value={value} onChange={handleValue}>
+                <RadioGroup name = "roleUser" className="checkbox d-flex" value={value} onChange={handleValue}>
                   <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />
                   <FormControlLabel value="student" control={<Radio />} label="Student" />  
                 </RadioGroup >
