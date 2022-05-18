@@ -36,13 +36,13 @@ const Verify = () => {
                 {errorMessage && <div> {errorMessage} </div>}
                 <div className="form__btn">
                   <Link to={`/`}>
-                    <Button
-                      className="Login__btn"
-                      variant="outlined"
-                      color="secondary"
-                    >
-                    Back
-                    </Button> 
+                  <Button
+                    className="Login__btn"
+                    variant="outlined"
+                    color="secondary"
+                  >
+                  Back
+                  </Button> 
                   </Link>
                   <Button
                     className="Login__btn"
