@@ -1,10 +1,10 @@
-import {AppBar, Toolbar, Avatar, Button} from '@material-ui/core';
-import {Link} from 'react-router-dom';
+import { AppBar, Avatar, Button, Toolbar } from '@material-ui/core';
 import React from 'react';
-import {useStyles} from './HeaderClassStyle';
-import {useLocalContext} from '../../context/context';
-import {CreateClass, JoinClass,ChangeProfile} from '..';
-import logo from '../assets/logo.png'; 
+import { Link } from 'react-router-dom';
+import { ChangeProfile, CreateClass, JoinClass } from '..';
+import { useLocalContext } from '../../context/context';
+import logo from '../assets/logo.png';
+import { useStyles } from './HeaderClassStyle';
 //import ToggleButton from '@material-ui/lab/ToggleButton';
 //import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
@@ -35,18 +35,15 @@ const HeaderClass = (props) =>{
                         className={classes.header_wrapper_middle}>
                         <Link to={`/${props.items.id}`}
                             className={classes.button} >
-                        <Button
-                        >News</Button>
+                            <Button>News</Button>
                         </Link>
                         <Link to={`/${props.items.id}/excercises`}
                             className={classes.button} >
-                        <Button
-                        >Exercises</Button>
+                            <Button>Exercises</Button>
                         </Link>
                         <Link to={`/${props.items.id}/grade`}
                             className={classes.button} >
-                        <Button
-                        >Grade</Button>
+                            <Button>Grade</Button>
                         </Link>
                     </div>
                     <div className={classes.header_wrapper_right}>

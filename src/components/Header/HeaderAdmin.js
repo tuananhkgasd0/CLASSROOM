@@ -1,10 +1,10 @@
-import {AppBar, Toolbar, Avatar, Button} from '@material-ui/core';
-import {Link} from 'react-router-dom';
+import { AppBar, Avatar, Button, Toolbar } from '@material-ui/core';
 import React from 'react';
-import {useStyles} from './HeaderStyle';
-import {useLocalContext} from '../../context/context';
-import {CreateClass, JoinClass,ChangeProfile} from '..';
-import logo from '../assets/logo.png'; 
+import { Link } from 'react-router-dom';
+import { ChangeProfile, CreateClass, JoinClass } from '..';
+import { useLocalContext } from '../../context/context';
+import logo from '../assets/logo.png';
+import { useStyles } from './HeaderStyle';
 const HeaderAdmin = () =>{
     const classes = useStyles();
 
@@ -40,18 +40,15 @@ const HeaderAdmin = () =>{
                         className={classes.header_wrapper_middle}>
                         <Link to={`/admin/manage/admin`}
                             className={classes.button} >
-                        <Button
-                        >Manage admin accounts</Button>
+                            <Button>Manage admin accounts</Button>
                         </Link>
                         <Link to={`/admin/manage/user`}
                             className={classes.button} >
-                        <Button
-                        >Manage user accounts</Button>
+                            <Button>Manage user accounts</Button>
                         </Link>
                         <Link to={`/admin/manage/class`}
                             className={classes.button} >
-                        <Button
-                        >Manage classes</Button>
+                            <Button>Manage classes</Button>
                         </Link>
                     </div>
                     <div className={classes.header_wrapper_right}>
