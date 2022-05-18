@@ -101,22 +101,22 @@ const Register = ({handleChange}) => {
                 </RadioGroup >
                 {errorMessage && <div> {errorMessage} </div>}
                 <div className="form__btn">
-                <Link to={`/`}>
-                  <Button
-                    className="Login__btn"
-                    variant="outlined"
-                    color="secondary"
-                  >
-                  Back
-                  </Button> 
+                  <Link to={`/`}>
+                    <Button
+                      className="Login__btn"
+                      variant="outlined"
+                      color="secondary"
+                    >
+                    Back
+                    </Button> 
                   </Link>
                   <Button
-                    className="Login__btn"
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                  >
-                  Register
+                      className="Login__btn"
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                    >
+                    Register
                   </Button>
                 </div>
               </Form>          
