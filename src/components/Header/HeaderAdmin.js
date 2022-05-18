@@ -40,15 +40,15 @@ const HeaderAdmin = () =>{
                         className={classes.header_wrapper_middle}>
                         <Link to={`/admin/manage/admin`}
                             className={classes.button} >
-                            <Button>Manage admin accounts</Button>
+                        <Button>Manage admin accounts</Button>
                         </Link>
                         <Link to={`/admin/manage/user`}
                             className={classes.button} >
-                            <Button>Manage user accounts</Button>
+                        <Button>Manage user accounts</Button>
                         </Link>
                         <Link to={`/admin/manage/class`}
                             className={classes.button} >
-                            <Button>Manage classes</Button>
+                        <Button>Manage classes</Button>
                         </Link>
                     </div>
                     <div className={classes.header_wrapper_right}>

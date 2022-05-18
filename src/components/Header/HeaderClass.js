@@ -35,15 +35,15 @@ const HeaderClass = (props) =>{
                         className={classes.header_wrapper_middle}>
                         <Link to={`/${props.items.id}`}
                             className={classes.button} >
-                            <Button>News</Button>
+                        <Button>News</Button>
                         </Link>
                         <Link to={`/${props.items.id}/excercises`}
                             className={classes.button} >
-                            <Button>Exercises</Button>
+                        <Button>Exercises</Button>
                         </Link>
                         <Link to={`/${props.items.id}/grade`}
                             className={classes.button} >
-                            <Button>Grade</Button>
+                        <Button>Grade</Button>
                         </Link>
                     </div>
                     <div className={classes.header_wrapper_right}>
