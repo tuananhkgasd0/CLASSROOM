@@ -91,14 +91,14 @@ const RegisterAdmin = ({handleChange}) => {
                 />
                 {errorMessage && <div> {errorMessage} </div>}
                 <div className="form__btn">
-                <Link to={`/admin`}>
-                  <Button
-                    className="Login__btn"
-                    variant="outlined"
-                    color="secondary"
-                  >
-                  Back
-                  </Button> 
+                  <Link to={`/admin`}>
+                    <Button
+                      className="Login__btn"
+                      variant="outlined"
+                      color="secondary"
+                    >
+                    Back
+                    </Button> 
                   </Link>
                   <Button
                     className="Login__btn"
